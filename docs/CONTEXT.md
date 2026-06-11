@@ -12,6 +12,7 @@
 - **Projects:** Grid layout (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3`) + stagger fade-up on scroll
 - **Typography:** Georgia serif for headings, Segoe UI for body
 - **Motion:** Entrance 0.8s `ease-out-back`; Hover 0.3s `ease-out-quart`
+- **Package Manager:** Bun
 
 ### What is NOT allowed (v1)
 - ❌ Warm tones (amber, cream, beige)
