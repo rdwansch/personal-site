@@ -76,6 +76,14 @@
 - Status: `in progress`
 - Evidence: —
 
+### Milestone 2.5 — Blog List Page (/read)
+- [x] `/read` page created with full post list
+- [x] "Read my posts" heading using Preahvihear font via @nuxt/fonts
+- [x] Font configured in nuxt.config.ts
+- [x] Each post links to /read/[slug]
+- Status: `done`
+- Evidence: —
+
 ---
 
 ## How to Update This File
