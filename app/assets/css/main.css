@@ -1,61 +1,77 @@
-@import url('https://fonts.googleapis.com/css2?family=Preahvihear&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Preahvihear&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Light theme (default) ─────────────────────────────── */
 :root {
-  /* Colors */
-  --color-base: #F7F8FB;
-  --color-dark: #1E2229;
-  --color-violet: #7C6FAF;
-  --color-teal: #4DA8A0;
-  --color-text-primary: #1E2229;
-  --color-text-secondary: #64748B;
-  --color-text-tertiary: #94A3B8;
-  --color-border: #E2E8F0;
+  --color-surface:        #F7F8FB;
+  --color-surface-raised: #FFFFFF;
+  --color-fg:             #1E2229;
+  --color-fg-secondary:   #64748B;
+  --color-fg-tertiary:    #94A3B8;
+  --color-accent:         #7C6FAF;
+  --color-accent-teal:    #4DA8A0;
+  --color-border:         #E2E8F0;
+  --overlay-accent:       rgba(124, 111, 175, 0.12);
 
-  /* Hover overlays */
-  --overlay-violet: rgba(124, 111, 175, 0.12);
-  --overlay-teal: rgba(77, 168, 160, 0.10);
+  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
 
-  /* Typography */
-  --font-display: 'Georgia', 'Garamond', serif;
-  --font-body: 'Segoe UI', 'Helvetica Neue', sans-serif;
-
-  /* Spacing */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
-  --space-2xl: 48px;
-  --space-3xl: 64px;
-  --space-4xl: 96px;
-
-  /* Timing & Easing */
-  --duration-fast: 0.3s;
+  --duration-fast:   0.3s;
   --duration-normal: 0.6s;
-  --duration-slow: 0.8s;
-  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-slow:   0.8s;
+  --ease-out-back:  cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-out-quart: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ─── Dark theme ─────────────────────────────────────────── */
+.dark {
+  --color-surface:        #0F1117;
+  --color-surface-raised: #1A1D27;
+  --color-fg:             #E8EAF0;
+  --color-fg-secondary:   #94A3B8;
+  --color-fg-tertiary:    #64748B;
+  --color-accent:         #9D8FD4;
+  --color-accent-teal:    #5DBFB7;
+  --color-border:         #2A2D3A;
+  --overlay-accent:       rgba(157, 143, 212, 0.12);
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
 html {
-  background-color: var(--color-base);
-  color: var(--color-text-primary);
-  font-family: var(--font-body);
+  scroll-behavior: smooth;
+  background-color: var(--color-surface);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Promote animated elements to their own compositor layer */
+body {
+  background-color: var(--color-surface);
+}
+
+/* ─── Parallax layer ─────────────────────────────────────── */
+[data-parallax] {
+  will-change: transform;
+}
+
+/* ─── Animated elements ──────────────────────────────────── */
 [data-stagger],
 .animate-fade-up,
 .animate-fade-in {
   will-change: opacity, transform;
 }
 
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
+/* ─── Reveal on scroll ───────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

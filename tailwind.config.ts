@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 export default {
+  darkMode: 'class',
   content: [
     './components/**/*.{vue,ts}',
     './layouts/**/*.vue',
@@ -11,20 +12,30 @@ export default {
   theme: {
     extend: {
       colors: {
+        surface:  'var(--color-surface)',
+        raised:   'var(--color-surface-raised)',
+        fg:       'var(--color-fg)',
+        'fg-secondary': 'var(--color-fg-secondary)',
+        'fg-tertiary':  'var(--color-fg-tertiary)',
+        accent:   'var(--color-accent)',
+        teal:     'var(--color-accent-teal)',
+        border:   'var(--color-border)',
+        // keep brand.* aliases for legacy component usage
         brand: {
-          base: '#F7F8FB',
-          dark: '#1E2229',
-          violet: '#7C6FAF',
-          teal: '#4DA8A0',
-          'text-primary': '#1E2229',
-          'text-secondary': '#64748B',
-          'text-tertiary': '#94A3B8',
-          border: '#E2E8F0',
+          base:             'var(--color-surface)',
+          dark:             'var(--color-fg)',
+          violet:           'var(--color-accent)',
+          teal:             'var(--color-accent-teal)',
+          'text-primary':   'var(--color-fg)',
+          'text-secondary': 'var(--color-fg-secondary)',
+          'text-tertiary':  'var(--color-fg-tertiary)',
+          border:           'var(--color-border)',
         },
       },
       fontFamily: {
-        display: ['Georgia', 'Garamond', 'serif'],
-        body: ['Segoe UI', 'Helvetica Neue', 'sans-serif'],
+        sans:        ['Inter', 'Segoe UI', 'system-ui', 'sans-serif'],
+        display:     ['Inter', 'Segoe UI', 'system-ui', 'sans-serif'],
+        body:        ['Inter', 'Segoe UI', 'system-ui', 'sans-serif'],
         preahvihear: ['Preahvihear', 'sans-serif'],
       },
       spacing: {
@@ -32,24 +43,30 @@ export default {
         '22': '5.5rem',
       },
       animation: {
-        'fade-up': 'fadeUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
-        'fade-in': 'fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'stagger': 'fadeUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+        'fade-up':    'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'fade-in':    'fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'stagger':    'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'float':      'float 6s ease-in-out infinite',
+        'float-slow': 'float 9s ease-in-out infinite',
       },
       keyframes: {
         fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(24px)' },
+          '0%':   { opacity: '0', transform: 'translateY(28px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         fadeIn: {
-          '0%': { opacity: '0' },
+          '0%':   { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%':      { transform: 'translateY(-16px)' },
         },
       },
       transitionTimingFunction: {
-        'out-back': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        'out-back':  'cubic-bezier(0.34, 1.56, 0.64, 1)',
         'out-quart': 'cubic-bezier(0.4, 0, 0.2, 1)',
-        'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'out-expo':  'cubic-bezier(0.16, 1, 0.3, 1)',
       },
     },
   },
