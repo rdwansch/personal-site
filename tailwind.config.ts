@@ -25,6 +25,7 @@ export default {
       fontFamily: {
         display: ['Georgia', 'Garamond', 'serif'],
         body: ['Segoe UI', 'Helvetica Neue', 'sans-serif'],
+        preahvihear: ['Preahvihear', 'sans-serif'],
       },
       spacing: {
         '18': '4.5rem',
