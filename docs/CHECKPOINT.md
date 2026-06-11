@@ -53,10 +53,10 @@
 - Evidence: —
 
 ### Milestone 2.2 — Content: About + Blog
-- [ ] About story text written
-- [ ] Skills list added
-- [ ] Blog section rendering from Nuxt Content
-- Status: `not started`
+- [x] About story text written
+- [x] Skills list added
+- [x] Blog section rendering from Nuxt Content
+- Status: `done`
 - Evidence: —
 
 ### Milestone 2.3 — Contact + Navbar + Footer
