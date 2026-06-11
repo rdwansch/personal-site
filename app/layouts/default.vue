@@ -1,5 +1,9 @@
 <template>
   <div class="min-h-screen bg-brand-base text-brand-dark font-body">
-    <slot />
+    <NavBar />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter />
   </div>
 </template>

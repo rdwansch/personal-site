@@ -60,11 +60,11 @@
 - Evidence: —
 
 ### Milestone 2.3 — Contact + Navbar + Footer
-- [ ] Navbar with links
-- [ ] Contact: email + social links
-- [ ] Footer
-- [ ] All links functional
-- Status: `not started`
+- [x] Navbar with links
+- [x] Contact: email + social links
+- [x] Footer
+- [x] All links functional
+- Status: `done`
 - Evidence: —
 
 ### Milestone 2.4 — Polish & Deploy
