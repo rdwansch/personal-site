@@ -45,3 +45,15 @@ html {
   color: var(--color-text-primary);
   font-family: var(--font-body);
 }
+
+/* Promote animated elements to their own compositor layer */
+[data-stagger],
+.animate-fade-up,
+.animate-fade-in {
+  will-change: opacity, transform;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
