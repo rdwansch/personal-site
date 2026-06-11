@@ -68,12 +68,12 @@
 - Evidence: —
 
 ### Milestone 2.4 — Polish & Deploy
-- [ ] Responsive check (desktop + mobile)
-- [ ] Animation performance check
-- [ ] Push to GitHub
+- [x] Responsive check (desktop + mobile)
+- [x] Animation performance check
+- [x] Push to GitHub
 - [ ] Deploy to Vercel
 - [ ] Live URL tested
-- Status: `not started`
+- Status: `in progress`
 - Evidence: —
 
 ---
