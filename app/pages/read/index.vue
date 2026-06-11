@@ -13,7 +13,7 @@ useSeoMeta({
   <div class="min-h-screen bg-brand-base">
     <div class="max-w-2xl mx-auto px-6 py-24 lg:py-32">
       <header class="mb-16">
-        <h1 class="text-4xl lg:text-5xl font-bold text-brand-dark tracking-tight" style="font-family: 'Preahvihear', sans-serif;">
+        <h1 class="text-4xl lg:text-5xl font-bold text-brand-dark tracking-tight font-preahvihear">
           Read my posts
         </h1>
       </header>
