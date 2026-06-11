@@ -19,11 +19,11 @@
 - Evidence: —
 
 ### Milestone 1.2 — Hero Section
-- [ ] Hero component created
-- [ ] Text animation implemented
-- [ ] Animated accent shape
-- [ ] Responsive (mobile + desktop)
-- Status: `not started`
+- [x] Hero component created
+- [x] Text animation implemented
+- [x] Animated accent shape
+- [x] Responsive (mobile + desktop)
+- Status: `done`
 - Evidence: —
 
 ### Milestone 1.3 — Projects Grid

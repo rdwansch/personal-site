@@ -1,5 +1,5 @@
 <template>
   <div>
-    <!-- sections will be added in subsequent milestones -->
+    <HeroSection />
   </div>
 </template>
