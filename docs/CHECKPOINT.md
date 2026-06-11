@@ -27,11 +27,11 @@
 - Evidence: —
 
 ### Milestone 1.3 — Projects Grid
-- [ ] Projects component created
-- [ ] Grid layout responsive
-- [ ] Stagger fade-in animation on scroll
-- [ ] Project cards with title + tags
-- Status: `not started`
+- [x] Projects component created
+- [x] Grid layout responsive
+- [x] Stagger fade-in animation on scroll
+- [x] Project cards with title + tags
+- Status: `done`
 - Evidence: —
 
 ### Milestone 1.4 — About Section Layout
