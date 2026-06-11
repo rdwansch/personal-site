@@ -21,7 +21,7 @@ const { data: posts } = await useAsyncData('blog-posts', () =>
       >
         <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-3">
           <h3 class="text-lg lg:text-xl font-display font-bold text-brand-dark group-hover:text-brand-violet transition-colors duration-300">
-            <NuxtLink :to="post.path">{{ post.title }}</NuxtLink>
+            <NuxtLink :to="`/read/${post.path.split('/').pop()}`">{{ post.title }}</NuxtLink>
           </h3>
           <time
             v-if="post.date"
