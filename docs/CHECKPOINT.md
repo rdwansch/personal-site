@@ -10,12 +10,12 @@
 ## Day 1 — June 11
 
 ### Milestone 1.1 — Setup & Foundation
-- [ ] Nuxt 3 project initialized
-- [ ] Tailwind CSS configured
-- [ ] Nuxt Content installed
-- [ ] Folder structure ready
-- [ ] Color palette CSS variables defined
-- Status: `not started`
+- [x] Nuxt 3 project initialized
+- [x] Tailwind CSS configured
+- [x] Nuxt Content installed
+- [x] Folder structure ready
+- [x] Color palette CSS variables defined
+- Status: `done`
 - Evidence: —
 
 ### Milestone 1.2 — Hero Section
