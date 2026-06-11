@@ -35,10 +35,10 @@
 - Evidence: —
 
 ### Milestone 1.4 — About Section Layout
-- [ ] About component created
-- [ ] Layout: story area + skills section
-- [ ] Typography hierarchy set
-- Status: `not started`
+- [x] About component created
+- [x] Layout: story area + skills section
+- [x] Typography hierarchy set
+- Status: `done`
 - Evidence: —
 
 ---
