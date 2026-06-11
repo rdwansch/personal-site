@@ -46,10 +46,10 @@
 ## Day 2 — June 12
 
 ### Milestone 2.1 — Content: Projects
-- [ ] Project data populated
-- [ ] Descriptions added
-- [ ] Images/thumbnails linked
-- Status: `not started`
+- [x] Project data populated
+- [x] Descriptions added
+- [x] Images/thumbnails linked
+- Status: `done`
 - Evidence: —
 
 ### Milestone 2.2 — Content: About + Blog
