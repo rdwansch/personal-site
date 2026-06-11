@@ -5,22 +5,25 @@ const { containerRef } = useStaggerReveal()
 
 const projects = [
   {
-    title: 'Project One',
-    description: 'A short description of what this project does and the problem it solves.',
-    tags: ['Vue', 'Nuxt', 'Tailwind'],
-    image: null,
+    title: 'Personal Site',
+    description: 'This site — a minimal, gallery-inspired portfolio built with Nuxt 3, Tailwind CSS, and Nuxt Content. Focused on clean motion and typographic hierarchy.',
+    tags: ['Nuxt', 'Tailwind', 'TypeScript'],
+    accent: '#7C6FAF',
+    link: 'https://github.com/rdwansch/personal-site',
   },
   {
-    title: 'Project Two',
-    description: 'A short description of what this project does and the problem it solves.',
-    tags: ['TypeScript', 'Node.js'],
-    image: null,
+    title: 'UI Component Library',
+    description: 'A set of accessible, composable Vue 3 components with a consistent design language. Built for reuse across projects with minimal configuration.',
+    tags: ['Vue 3', 'TypeScript', 'Vite'],
+    accent: '#4DA8A0',
+    link: null,
   },
   {
-    title: 'Project Three',
-    description: 'A short description of what this project does and the problem it solves.',
-    tags: ['React', 'CSS'],
-    image: null,
+    title: 'REST API Boilerplate',
+    description: 'Production-ready Node.js API starter with authentication, validation, error handling, and structured logging baked in from day one.',
+    tags: ['Node.js', 'Express', 'TypeScript'],
+    accent: '#64748B',
+    link: null,
   },
 ]
 </script>
@@ -42,38 +45,50 @@ const projects = [
         v-for="project in projects"
         :key="project.title"
         data-stagger
-        class="border border-brand-border bg-brand-base p-6 transition-shadow duration-300 ease-out-quart hover:shadow-md hover:shadow-slate-200 opacity-0"
+        class="group border border-brand-border bg-brand-base transition-shadow duration-300 ease-out-quart hover:shadow-md hover:shadow-slate-200 opacity-0"
         style="animation-fill-mode: forwards;"
       >
         <!-- Thumbnail -->
-        <div class="aspect-video bg-slate-100 mb-4 overflow-hidden">
-          <img
-            v-if="project.image"
-            :src="project.image"
-            :alt="project.title"
-            class="w-full h-full object-cover"
-          />
-          <div v-else class="w-full h-full flex items-center justify-center">
-            <span class="text-brand-text-tertiary text-xs font-semibold tracking-widest uppercase">Image</span>
+        <div
+          class="aspect-video mb-0 overflow-hidden"
+          :style="{ backgroundColor: project.accent + '18' }"
+        >
+          <div class="w-full h-full flex items-center justify-center">
+            <span class="font-display font-bold text-2xl" :style="{ color: project.accent + '60' }">
+              {{ project.title.charAt(0) }}
+            </span>
           </div>
         </div>
 
-        <!-- Tags -->
-        <div class="flex flex-wrap gap-2 mb-3">
-          <span
-            v-for="tag in project.tags"
-            :key="tag"
-            class="text-xs font-semibold tracking-widest uppercase text-brand-violet"
-          >
-            {{ tag }}
-          </span>
+        <div class="p-6">
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-3 mb-3">
+            <span
+              v-for="tag in project.tags"
+              :key="tag"
+              class="text-xs font-semibold tracking-widest uppercase text-brand-violet"
+            >
+              {{ tag }}
+            </span>
+          </div>
+
+          <!-- Title + link -->
+          <h4 class="text-lg font-display font-bold text-brand-dark mb-2">
+            <a
+              v-if="project.link"
+              :href="project.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-brand-violet transition-colors duration-300"
+            >
+              {{ project.title }}
+            </a>
+            <span v-else>{{ project.title }}</span>
+          </h4>
+
+          <!-- Description -->
+          <p class="text-sm text-brand-text-secondary leading-relaxed">{{ project.description }}</p>
         </div>
-
-        <!-- Title -->
-        <h4 class="text-lg font-display font-bold text-brand-dark mb-2">{{ project.title }}</h4>
-
-        <!-- Description -->
-        <p class="text-sm text-brand-text-secondary leading-relaxed">{{ project.description }}</p>
       </article>
     </div>
   </section>
