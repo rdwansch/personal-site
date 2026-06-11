@@ -38,7 +38,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     >
       <!-- Label -->
       <p
-        class="text-xs font-semibold tracking-widest uppercase text-accent opacity-0 animate-fade-in"
+        class="text-xs font-thin tracking-widest uppercase text-accent opacity-0 animate-fade-in"
         style="animation-fill-mode: forwards;"
       >
         Frontend Developer
@@ -50,7 +50,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
         style="animation-delay: 120ms; animation-fill-mode: forwards;"
       >
         Ridhwan<br />
-        <span class="text-accent">R Siddiq</span>
+        <span class="text-accent font-thin">R Siddiq</span>
       </h1>
 
       <!-- Tagline -->
