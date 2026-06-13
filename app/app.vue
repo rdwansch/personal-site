@@ -1,5 +1,6 @@
 <template>
   <div>
+    <CursorEffect />
     <NuxtRouteAnnouncer />
     <NuxtLayout>
       <NuxtPage />
