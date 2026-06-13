@@ -257,8 +257,19 @@ onUnmounted(() => cancelAnimationFrame(sigRaf))
   height: auto;
 }
 
+/* Hide strokes before JS measures/animates them (prevents SSR flash of the
+   full signature on first paint). JS overrides with each path's real length. */
+.sig-seg {
+  stroke-dasharray: 20000;
+  stroke-dashoffset: 20000;
+}
+
 .sig-quill {
   color: var(--color-accent, #6366f1);
   opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sig-seg { stroke-dashoffset: 0; }
 }
 </style>
