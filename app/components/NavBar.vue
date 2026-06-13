@@ -2,9 +2,8 @@
 import { ref, onMounted, onUnmounted, watch } from 'vue'
 
 const links = [
-  { label: 'Work', href: '/work' },
-  { label: 'About', href: '/about' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Experiences', href: '/experiences' },
+  { label: 'Articles', href: '/articles' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -146,13 +145,13 @@ onUnmounted(() => {
           >
             <NuxtLink
               :to="link.href"
-              class="flex items-center justify-between py-5 border-b border-border text-2xl font-sans font-bold text-fg hover:text-accent transition-colors duration-200 group"
+              class="flex items-center justify-between py-6 border-b border-border text-4xl font-sans font-bold text-fg hover:text-accent transition-colors duration-200 group"
               active-class="text-accent"
               @click="closeMenu"
             >
               <span>{{ link.label }}</span>
               <svg
-                class="w-5 h-5 text-fg-tertiary group-hover:text-accent group-hover:translate-x-1 transition-all duration-200"
+                class="w-6 h-6 text-fg-tertiary group-hover:text-accent group-hover:translate-x-1 transition-all duration-200"
                 fill="none" stroke="currentColor" viewBox="0 0 24 24"
               >
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
