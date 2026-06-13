@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "institution": "DumbWays ID",
+      "location": "Tangerang, Indonesia",
+      "degree": "Bootcamp — Fullstack Javascript Developer",
+      "period": "Sep 2023 – Feb 2024"
+    },
+    {
+      "institution": "SMK Negeri 8 Semarang",
+      "location": "Semarang, Indonesia",
+      "degree": "Senior High School, Rekayasa Perangkat Lunak",
+      "period": "Jul 2020 – Jun 2023"
+    }
+  ]
+}
