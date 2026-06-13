@@ -53,7 +53,7 @@ onMounted(() => {
             <span
               v-for="skill in group.items"
               :key="skill"
-              class="border border-border px-3 py-1 text-sm text-fg-secondary hover:border-accent hover:text-accent transition-colors duration-300 cursor-default"
+              class="skill-tag"
             >
               {{ skill }}
             </span>
@@ -63,3 +63,41 @@ onMounted(() => {
     </div>
   </section>
 </template>
+
+<style scoped>
+.skill-tag {
+  display: inline-block;
+  border: 1px solid var(--color-border);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--color-fg-secondary);
+  position: relative;
+  overflow: hidden;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s var(--ease-out-back),
+    box-shadow 0.25s ease;
+}
+
+.skill-tag::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--overlay-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.skill-tag:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 14px var(--overlay-accent);
+}
+
+.skill-tag:hover::before {
+  transform: scaleX(1);
+}
+</style>
