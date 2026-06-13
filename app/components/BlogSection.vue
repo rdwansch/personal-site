@@ -1,13 +1,22 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+
 const { data: posts } = await useAsyncData('blog-posts', () =>
-  queryCollection('blog').order('date', 'DESC').limit(3).all()
+  queryCollection('blog').order('date', 'DESC').all()
 )
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } }),
+    { threshold: 0.1 }
+  )
+  document.querySelectorAll('#blog .reveal').forEach(el => observer.observe(el))
+})
 </script>
 
 <template>
   <section id="blog" class="py-24 lg:py-32 px-6 lg:px-12 max-w-6xl mx-auto border-t border-border">
     <!-- Section header -->
-    <div class="mb-12">
+    <div class="mb-12 reveal">
       <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Writing</p>
       <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight">Articles</h2>
     </div>
@@ -15,9 +24,10 @@ const { data: posts } = await useAsyncData('blog-posts', () =>
     <!-- Post list -->
     <div class="space-y-0 divide-y divide-border">
       <article
-        v-for="post in posts"
+        v-for="(post, idx) in posts?.filter(p => p.meta.draft !== true)"
         :key="post.path"
-        class="py-8 group transition-colors duration-300"
+        class="py-8 group transition-colors duration-300 reveal"
+        :style="`transition-delay: ${idx * 80}ms`"
       >
         <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-3">
           <h3 class="text-lg lg:text-xl font-sans font-bold text-fg group-hover:text-accent transition-colors duration-300">
