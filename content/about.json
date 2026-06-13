@@ -1,6 +1,6 @@
 {
   "bio": [
-    "Frontend developer with 2 years of production experience building internal tools, real-time systems, and customer-facing web applications. Core stack: React/Next.js, Vue/Nuxt.js, TypeScript.",
+    "Software developer with 2 years of production experience building internal tools, real-time systems, and customer-facing web applications. Core stack: React/Next.js, Vue/Nuxt.js, TypeScript.",
     "I've shipped features used daily by real users across sales, operations, and customer communication workflows — from ERP dashboards to bilingual landing pages reaching 90+ countries.",
     "I care about the details — smooth interactions, readable code, and interfaces that just work. I'm comfortable owning a feature from concept to deployment."
   ],
@@ -8,6 +8,10 @@
     {
       "category": "Frontend",
       "items": ["React", "Next.js", "Vue", "Nuxt.js", "TypeScript", "JavaScript", "Tailwind CSS", "Chakra UI", "Framer Motion"]
+    },
+    {
+      "category": "Backend",
+      "items": ["Node.js", "Express"]
     },
     {
       "category": "State Management",
