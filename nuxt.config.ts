@@ -35,7 +35,7 @@ export default defineNuxtConfig({
       email: process.env.NUXT_PUBLIC_EMAIL,
       linkedin: process.env.NUXT_PUBLIC_LINKEDIN,
       github: process.env.NUXT_PUBLIC_GITHUB,
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://personal-site.vercel.app',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://ridhwan-siddiq.vercel.app',
       siteName: process.env.NUXT_PUBLIC_SITE_NAME || 'Ridhwan R Siddiq',
       siteDescription:
         process.env.NUXT_PUBLIC_SITE_DESCRIPTION ||

@@ -38,7 +38,7 @@ const ogSvg = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http
 
   <text x="96" y="476" font-family="${SANS}" font-size="26" font-weight="500" fill="#94A3B8">React · Next.js · Vue · Nuxt · TypeScript</text>
 
-  <text x="96" y="558" font-family="${SANS}" font-size="24" font-weight="600" fill="#6B5CA5">personal-site.vercel.app</text>
+  <text x="96" y="558" font-family="${SANS}" font-size="24" font-weight="600" fill="#6B5CA5">ridhwan-siddiq.vercel.app</text>
 </svg>`
 
 const iconSvg = `<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
