@@ -94,42 +94,69 @@ function onMouseDown(e: MouseEvent) {
 
 function onMouseUp() { isClicking.value = false }
 
-const enabled = ref(false)
+// ── Touch support (ripple circle + trail, no arrow) ──────────
+function onTouchMove(e: TouchEvent) {
+  const t = e.touches[0]
+  if (!t) return
+  cursorX.value = t.clientX
+  cursorY.value = t.clientY
+  trail.push({ x: t.clientX, y: t.clientY, age: 0 })
+  if (trail.length > TRAIL_MAX) trail.shift()
+}
+
+function onTouchStart(e: TouchEvent) {
+  const t = e.touches[0]
+  if (!t) return
+  const id = ++rippleId
+  ripples.value.push({ id, x: t.clientX, y: t.clientY })
+  setTimeout(() => {
+    ripples.value = ripples.value.filter(r => r.id !== id)
+  }, 900)
+}
+
+// On touch-first devices (iPhone, iPad, Android…) we keep the ripple circle
+// and trail, but hide the arrow cursor and never hide the native cursor.
+const isTouch = ref(false)
 
 onMounted(async () => {
-  // Skip the custom cursor entirely on touch-first devices (iPhone, iPad, Android…).
-  if (isTouchDevice()) return
-  enabled.value = true
-  document.documentElement.classList.add('custom-cursor')
+  isTouch.value = isTouchDevice()
+  if (!isTouch.value) document.documentElement.classList.add('custom-cursor')
 
   await nextTick()
   canvas = canvasRef.value!
   ctx = canvas.getContext('2d')!
   resizeCanvas()
   window.addEventListener('resize', resizeCanvas)
-  window.addEventListener('mousemove', onMouseMove, { passive: true })
-  window.addEventListener('mousedown', onMouseDown)
-  window.addEventListener('mouseup', onMouseUp)
-  document.addEventListener('mouseleave', () => { isVisible.value = false; trail.length = 0 })
-  document.addEventListener('mouseenter', () => { isVisible.value = true })
+
+  if (isTouch.value) {
+    window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchmove', onTouchMove, { passive: true })
+  } else {
+    window.addEventListener('mousemove', onMouseMove, { passive: true })
+    window.addEventListener('mousedown', onMouseDown)
+    window.addEventListener('mouseup', onMouseUp)
+    document.addEventListener('mouseleave', () => { isVisible.value = false; trail.length = 0 })
+    document.addEventListener('mouseenter', () => { isVisible.value = true })
+  }
+
   lastTime = performance.now()
   rafId = requestAnimationFrame(drawTrail)
 })
 
 onUnmounted(() => {
-  if (!enabled.value) return
   document.documentElement.classList.remove('custom-cursor')
   window.removeEventListener('resize', resizeCanvas)
   window.removeEventListener('mousemove', onMouseMove)
   window.removeEventListener('mousedown', onMouseDown)
   window.removeEventListener('mouseup', onMouseUp)
+  window.removeEventListener('touchstart', onTouchStart)
+  window.removeEventListener('touchmove', onTouchMove)
   cancelAnimationFrame(rafId)
 })
 </script>
 
 <template>
   <ClientOnly>
-    <template v-if="enabled">
     <!-- Trail canvas -->
     <canvas ref="canvasRef" class="cursor-canvas" />
 
@@ -141,9 +168,9 @@ onUnmounted(() => {
       :style="{ left: `${r.x}px`, top: `${r.y}px` }"
     />
 
-    <!-- Arrow cursor -->
+    <!-- Arrow cursor (hidden on touch devices) -->
     <div
-      v-show="isVisible"
+      v-show="isVisible && !isTouch"
       class="cursor-pos"
       :style="{ transform: `translate(${cursorX}px, ${cursorY}px)` }"
     >
@@ -159,7 +186,6 @@ onUnmounted(() => {
         </svg>
       </div>
     </div>
-    </template>
   </ClientOnly>
 </template>
 
