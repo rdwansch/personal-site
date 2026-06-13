@@ -2,8 +2,8 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const links = [
-  { label: 'Work', href: '/work' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Experiences', href: '/experiences' },
+  { label: 'Articles', href: '/articles' },
   { label: 'Contact', href: '/contact' },
 ]
 

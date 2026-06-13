@@ -71,10 +71,10 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
         style="animation-delay: 360ms; animation-fill-mode: forwards;"
       >
         <NuxtLink
-          to="/work"
+          to="/experiences"
           class="bg-accent text-white px-8 py-3.5 font-semibold tracking-widest uppercase text-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/25 active:translate-y-0"
         >
-          View Work
+          View Experiences
         </NuxtLink>
         <NuxtLink
           to="/about"

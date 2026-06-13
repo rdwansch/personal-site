@@ -21,7 +21,7 @@ useSeoMeta({
     <div class="max-w-2xl mx-auto px-6 py-24 lg:py-32">
       <!-- Back link -->
       <NuxtLink
-        to="/blog"
+        to="/articles"
         class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-fg-tertiary hover:text-accent transition-colors duration-200 mb-12"
       >
         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

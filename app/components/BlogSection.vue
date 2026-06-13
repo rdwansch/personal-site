@@ -9,7 +9,7 @@ const { data: posts } = await useAsyncData('blog-posts', () =>
     <!-- Section header -->
     <div class="mb-12">
       <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Writing</p>
-      <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight">Blog</h2>
+      <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight">Articles</h2>
     </div>
 
     <!-- Post list -->
