@@ -10,6 +10,7 @@ interface Ripple {
 const cursorX = ref(-100)
 const cursorY = ref(-100)
 const isClicking = ref(false)
+const isVisible = ref(false)
 const ripples = ref<Ripple[]>([])
 let rippleId = 0
 
@@ -67,6 +68,7 @@ function drawTrail(now: number) {
 function onMouseMove(e: MouseEvent) {
   cursorX.value = e.clientX
   cursorY.value = e.clientY
+  isVisible.value = true
   trail.push({ x: e.clientX, y: e.clientY, age: 0 })
   if (trail.length > TRAIL_MAX) trail.shift()
 }
@@ -91,6 +93,8 @@ onMounted(async () => {
   window.addEventListener('mousemove', onMouseMove, { passive: true })
   window.addEventListener('mousedown', onMouseDown)
   window.addEventListener('mouseup', onMouseUp)
+  document.addEventListener('mouseleave', () => { isVisible.value = false; trail.length = 0 })
+  document.addEventListener('mouseenter', () => { isVisible.value = true })
   lastTime = performance.now()
   rafId = requestAnimationFrame(drawTrail)
 })
@@ -119,6 +123,7 @@ onUnmounted(() => {
 
     <!-- Arrow cursor -->
     <div
+      v-show="isVisible"
       class="cursor-pos"
       :style="{ transform: `translate(${cursorX}px, ${cursorY}px)` }"
     >
