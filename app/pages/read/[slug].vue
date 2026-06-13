@@ -53,7 +53,7 @@ useSeoMeta({
       <hr class="border-border mb-12" />
 
       <!-- Body -->
-      <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-sans prose-headings:font-bold prose-headings:text-fg prose-p:text-fg-secondary prose-p:leading-relaxed prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+      <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-sans prose-headings:font-bold prose-headings:text-fg prose-p:text-fg-secondary prose-p:leading-relaxed prose-li:text-fg-secondary prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
         <ContentRenderer :value="post" />
       </div>
     </div>
