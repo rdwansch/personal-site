@@ -8,6 +8,12 @@ export default defineNuxtConfig({
     ],
   },
   css: ['~/assets/css/main.css'],
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
+  },
   runtimeConfig: {
     public: {
       fullName: process.env.NUXT_PUBLIC_FULL_NAME,
