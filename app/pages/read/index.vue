@@ -3,9 +3,13 @@ const { data: posts } = await useAsyncData('all-blog-posts', () =>
   queryCollection('blog').order('date', 'DESC').all()
 )
 
-useSeoMeta({
+// /articles is the canonical, indexed listing — keep this mirror out of the index.
+useSeo({
   title: 'Read my posts',
-  description: 'All writing by RRS.',
+  description:
+    'Articles by Ridhwan R Siddiq on web development — React, Next.js, Vue, Nuxt and JavaScript.',
+  path: '/articles',
+  noindex: true,
 })
 </script>
 

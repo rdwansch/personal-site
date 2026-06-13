@@ -1,0 +1,14 @@
+{
+  "name": "Ridhwan R Siddiq — Software Developer",
+  "short_name": "RRS",
+  "description": "Ridhwan R Siddiq is a software developer specializing in React, Next.js, Vue and Nuxt.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F8FB",
+  "theme_color": "#F7F8FB",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
