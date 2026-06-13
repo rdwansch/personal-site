@@ -33,10 +33,10 @@
   --color-fg:             #E8EAF0;
   --color-fg-secondary:   #94A3B8;
   --color-fg-tertiary:    #64748B;
-  --color-accent:         #A991E8;
-  --color-accent-teal:    #5DBFB7;
+  --color-accent:         #7C6FC2;
+  --color-accent-teal:    #3D9E97;
   --color-border:         #2A2D3A;
-  --overlay-accent:       rgba(157, 143, 212, 0.12);
+  --overlay-accent:       rgba(124, 111, 194, 0.14);
 }
 
 /* ─── Base ───────────────────────────────────────────────── */
