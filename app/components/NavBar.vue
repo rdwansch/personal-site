@@ -54,7 +54,7 @@ onUnmounted(() => {
   <nav
     class="sticky top-0 z-50 h-16 flex items-center justify-between px-6 lg:px-12 transition-all duration-300"
     :class="scrolled
-      ? 'bg-surface/95 backdrop-blur-md border-b border-border shadow-sm'
+      ? 'bg-surface border-b border-border shadow-sm'
       : 'bg-transparent'"
   >
     <!-- Wordmark -->
@@ -135,7 +135,7 @@ onUnmounted(() => {
     >
       <div
         v-if="menuOpen"
-        class="fixed inset-0 z-40 md:hidden bg-surface/98 backdrop-blur-md flex flex-col pt-24 px-8 pb-12"
+        class="fixed inset-0 z-40 md:hidden bg-surface flex flex-col pt-24 px-8 pb-12"
       >
         <ul class="flex flex-col gap-2 flex-1">
           <li
