@@ -9,7 +9,7 @@ const { data: work } = await useAsyncData('work', () =>
     <section class="py-24 lg:py-32 px-6 lg:px-12 max-w-6xl mx-auto">
       <div class="mb-12">
         <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Experience</p>
-        <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight">Work</h2>
+        <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight">Experiences</h2>
       </div>
 
       <div class="space-y-16">

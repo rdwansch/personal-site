@@ -26,10 +26,10 @@
         Go Home
       </NuxtLink>
       <NuxtLink
-        to="/work"
+        to="/experiences"
         class="relative text-xs font-semibold tracking-widest uppercase text-fg-secondary hover:text-accent transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full self-center"
       >
-        View Work
+        View Experiences
       </NuxtLink>
     </div>
   </section>
