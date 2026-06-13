@@ -1,6 +1,26 @@
 {
   "experience": [
     {
+      "company": "Client",
+      "location": "Remote Canada",
+      "role": "Frontend Developer - Freelance",
+      "period": "March 2026 – May 2026",
+      "highlights": [
+        {
+          "text": "Built and optimized high-performance, responsive web interfaces based on tailored design specifications, ensuring seamless cross-browser compatibility and a pixel-perfect user experience.",
+          "stack": "Next JS, TypeScript, Tailwind CSS"
+        },
+        {
+          "text": "Integrated third-party RESTful APIs and handled complex client-side state management to streamline data fetching and dynamic content rendering.",
+          "stack": "-"
+        },
+        {
+          "text": "Collaborated effectively in a fully remote environment using asynchronous communication and version control workflows to deliver project milestones on schedule.",
+          "stack": "-"
+        }
+      ]
+    },
+    {
       "company": "Master Bagasi",
       "location": "Jakarta Selatan",
       "role": "Frontend Developer",
@@ -22,3 +42,5 @@
     }
   ]
 }
+
+
