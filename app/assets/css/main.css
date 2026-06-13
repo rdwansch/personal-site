@@ -53,7 +53,8 @@ body {
 }
 
 /* ─── Custom cursor ──────────────────────────────────────── */
-*, *::before, *::after {
+/* Only hide the native cursor when the custom cursor is active (non-touch). */
+.custom-cursor, .custom-cursor *, .custom-cursor *::before, .custom-cursor *::after {
   cursor: none !important;
 }
 

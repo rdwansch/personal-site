@@ -27,6 +27,16 @@ const TRAIL_LIFE = 500 // ms
 
 let lastTime = 0
 
+// Detect touch-first devices (iPhone, iPad, Android, etc.) by user agent.
+// iPadOS 13+ reports a desktop UA, so also treat Mac with touch points as iPad.
+function isTouchDevice() {
+  if (typeof navigator === 'undefined') return false
+  const ua = navigator.userAgent || ''
+  const isMobileUA = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet|Silk/i.test(ua)
+  const isIpadOS = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1
+  return isMobileUA || isIpadOS
+}
+
 function resizeCanvas() {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
@@ -84,7 +94,14 @@ function onMouseDown(e: MouseEvent) {
 
 function onMouseUp() { isClicking.value = false }
 
+const enabled = ref(false)
+
 onMounted(async () => {
+  // Skip the custom cursor entirely on touch-first devices (iPhone, iPad, Android…).
+  if (isTouchDevice()) return
+  enabled.value = true
+  document.documentElement.classList.add('custom-cursor')
+
   await nextTick()
   canvas = canvasRef.value!
   ctx = canvas.getContext('2d')!
@@ -100,6 +117,8 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+  if (!enabled.value) return
+  document.documentElement.classList.remove('custom-cursor')
   window.removeEventListener('resize', resizeCanvas)
   window.removeEventListener('mousemove', onMouseMove)
   window.removeEventListener('mousedown', onMouseDown)
@@ -110,6 +129,7 @@ onUnmounted(() => {
 
 <template>
   <ClientOnly>
+    <template v-if="enabled">
     <!-- Trail canvas -->
     <canvas ref="canvasRef" class="cursor-canvas" />
 
@@ -139,6 +159,7 @@ onUnmounted(() => {
         </svg>
       </div>
     </div>
+    </template>
   </ClientOnly>
 </template>
 
