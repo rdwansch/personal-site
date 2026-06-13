@@ -1,75 +1,96 @@
-# Nuxt Minimal Starter
+# Personal Site
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Minimal portfolio built with Nuxt 3, Tailwind CSS, and Nuxt Content.
 
 ## Setup
 
-Make sure to install dependencies:
+Install dependencies:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
 bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+Copy the environment file and fill in your values:
 
 ```bash
-# npm
-npm run dev
+cp .env.example .env
+```
 
-# pnpm
-pnpm dev
+| Variable | Description |
+|---|---|
+| `NUXT_PUBLIC_FULL_NAME` | Your full name (shown in hero) |
+| `NUXT_PUBLIC_EMAIL` | Contact email address |
+| `NUXT_PUBLIC_LINKEDIN` | Full LinkedIn profile URL |
+| `NUXT_PUBLIC_GITHUB` | Full GitHub profile URL |
 
-# yarn
-yarn dev
+## Development
 
-# bun
+```bash
 bun run dev
 ```
 
+## Content
+
+Site data lives in `content/` as JSON files — edit these instead of touching components:
+
+| File | What it controls |
+|---|---|
+| `content/about.json` | Bio paragraphs and skill groups |
+| `content/work.json` | Work experience entries |
+| `content/projects.json` | Project cards |
+| `content/education.json` | Education history |
+
+Blog posts live in `content/blog/` as Markdown files.
+
 ## Production
 
-Build the application for production:
-
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
 bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+---
+
+## Commit Message Convention
+
+This project follows [Conventional Commits](https://www.conventionalcommits.org/).
+
+### Format
+
+```
+<type>(<scope>): <subject>
+```
+
+- **type** — what kind of change (required)
+- **scope** — what area it touches (optional, lowercase)
+- **subject** — short description in imperative mood, no period at the end
+
+### Types
+
+| Type | Use for |
+|---|---|
+| `feat` | New feature or visible content addition |
+| `fix` | Bug fix |
+| `style` | Visual/CSS changes with no logic change |
+| `refactor` | Code restructure without behavior change |
+| `content` | Updating JSON/Markdown content data |
+| `chore` | Tooling, config, dependencies |
+| `docs` | README or documentation only |
+
+### Examples
+
+```
+feat(hero): add scroll-based parallax animation
+fix(contact): correct LinkedIn URL
+style(about): tighten skill tag spacing
+content(projects): add Circle project entry
+chore: bump nuxt to 3.13
+docs: add commit convention to README
+```
+
+### Rules
+
+- Subject line ≤ 72 characters
+- Use imperative mood — "add" not "added" or "adds"
+- No capital letter at the start of the subject
+- No period at the end
