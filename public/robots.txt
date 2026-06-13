@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://personal-site.vercel.app/sitemap.xml
+Sitemap: https://ridhwan-siddiq.vercel.app/sitemap.xml
