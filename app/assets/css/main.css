@@ -52,6 +52,26 @@ body {
   background-color: var(--color-surface);
 }
 
+/* ─── Custom cursor ──────────────────────────────────────── */
+*, *::before, *::after {
+  cursor: url('/cursor-default.svg') 12 12, auto;
+}
+
+a, button, [role="button"], label[for], select, input[type="submit"],
+input[type="button"], input[type="checkbox"], input[type="radio"] {
+  cursor: url('/cursor-pointer.svg') 12 12, pointer;
+}
+
+.dark *, .dark *::before, .dark *::after {
+  cursor: url('/cursor-default-dark.svg') 12 12, auto;
+}
+
+.dark a, .dark button, .dark [role="button"], .dark label[for], .dark select,
+.dark input[type="submit"], .dark input[type="button"],
+.dark input[type="checkbox"], .dark input[type="radio"] {
+  cursor: url('/cursor-pointer-dark.svg') 12 12, pointer;
+}
+
 /* ─── Parallax layer ─────────────────────────────────────── */
 [data-parallax] {
   will-change: transform;
