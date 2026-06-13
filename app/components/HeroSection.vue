@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
+const { public: { fullName } } = useRuntimeConfig()
+const [firstName, ...rest] = (fullName as string).split(' ')
+const restName = rest.join(' ')
+
 const parallaxY = ref(0)
 const blobY1 = ref(0)
 const blobY2 = ref(0)
@@ -49,8 +53,8 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
         class="text-5xl lg:text-7xl font-sans font-bold text-fg leading-tight tracking-tight mt-4 opacity-0 animate-fade-up"
         style="animation-delay: 120ms; animation-fill-mode: forwards;"
       >
-        Ridhwan<br />
-        <span class="text-accent font-thin">R Siddiq</span>
+        {{ firstName }}<br />
+        <span class="text-accent font-thin">{{ restName }}</span>
       </h1>
 
       <!-- Tagline -->

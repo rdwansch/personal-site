@@ -1,0 +1,24 @@
+{
+  "experience": [
+    {
+      "company": "Master Bagasi",
+      "location": "Jakarta Selatan",
+      "role": "Frontend Developer",
+      "period": "Feb 2024 – Jan 2026",
+      "highlights": [
+        {
+          "text": "Built and maintained a customer-facing landing page reaching users across 90+ countries, with bilingual localization, scroll-based animations, and Google Analytics integration.",
+          "stack": "Vue/Nuxt.js, TypeScript, Tailwind CSS"
+        },
+        {
+          "text": "Developed an ERP sales dashboard used daily by ~15–20 sales reps, covering end-to-end sales workflows from lead tracking to order management, integrated with multiple REST APIs.",
+          "stack": "React/Next.js, TypeScript, Chakra UI"
+        },
+        {
+          "text": "Integrated WhatsApp into internal systems, centralizing 100+ customer conversations and reducing communication fragmentation across channels.",
+          "stack": "React/Next.js, TypeScript"
+        }
+      ]
+    }
+  ]
+}

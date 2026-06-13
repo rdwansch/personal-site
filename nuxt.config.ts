@@ -8,4 +8,12 @@ export default defineNuxtConfig({
     ],
   },
   css: ['~/assets/css/main.css'],
+  runtimeConfig: {
+    public: {
+      fullName: process.env.NUXT_PUBLIC_FULL_NAME,
+      email: process.env.NUXT_PUBLIC_EMAIL,
+      linkedin: process.env.NUXT_PUBLIC_LINKEDIN,
+      github: process.env.NUXT_PUBLIC_GITHUB,
+    },
+  },
 })

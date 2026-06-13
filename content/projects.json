@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "title": "Circle",
+      "description": "End-to-end social media thread platform built solo — authentication, post creation, follow system, and user profiles.",
+      "tags": ["React", "TypeScript", "Express.js"],
+      "accentHex": "#7C6FAF",
+      "link": null
+    },
+    {
+      "title": "Real-time Trivia Game",
+      "description": "Live multiplayer trivia game with real-time score updates and room management, built in a 4-person team.",
+      "tags": ["React Native", "Socket.IO", "Express.js"],
+      "accentHex": "#4DA8A0",
+      "link": null
+    },
+    {
+      "title": "School Attendance System",
+      "description": "Web-based attendance system actively used in a school environment, with geolocation check-in and time-bound attendance codes.",
+      "tags": ["React", "JavaScript", "Tailwind CSS"],
+      "accentHex": "#64748B",
+      "link": null
+    }
+  ]
+}
