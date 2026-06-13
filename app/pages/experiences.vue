@@ -5,6 +5,12 @@ const { data: work } = await useAsyncData('work', () =>
   queryCollection('work').first()
 )
 
+useSeo({
+  title: 'Experiences',
+  description:
+    'Work history of Ridhwan R Siddiq — shipping internal tools, real-time systems and customer-facing web apps with React, Next.js, Vue, Nuxt and TypeScript.',
+})
+
 onMounted(() => {
   const observer = new IntersectionObserver(
     (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } }),

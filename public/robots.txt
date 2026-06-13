@@ -1,2 +1,4 @@
-User-Agent: *
-Disallow:
+User-agent: *
+Allow: /
+
+Sitemap: https://personal-site.vercel.app/sitemap.xml

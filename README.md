@@ -22,6 +22,9 @@ cp .env.example .env
 | `NUXT_PUBLIC_EMAIL` | Contact email address |
 | `NUXT_PUBLIC_LINKEDIN` | Full LinkedIn profile URL |
 | `NUXT_PUBLIC_GITHUB` | Full GitHub profile URL |
+| `NUXT_PUBLIC_SITE_URL` | Absolute production URL, no trailing slash — drives canonical, Open Graph, sitemap and RSS. Set this in your deploy environment (e.g. Vercel). |
+| `NUXT_PUBLIC_SITE_NAME` | _(optional)_ Display name used in titles and structured data |
+| `NUXT_PUBLIC_SITE_DESCRIPTION` | _(optional)_ Default meta description |
 
 ## Development
 
@@ -41,6 +44,25 @@ Site data lives in `content/` as JSON files — edit these instead of touching c
 | `content/education.json` | Education history |
 
 Blog posts live in `content/blog/` as Markdown files.
+
+## SEO & social
+
+Per-page metadata is set with the `useSeo()` composable ([`app/composables/useSeo.ts`](app/composables/useSeo.ts)); site-wide defaults and JSON-LD live in [`app/app.vue`](app/app.vue). These are generated automatically at build time:
+
+| Path | What it is |
+|---|---|
+| `/sitemap.xml` | All indexable routes + published posts ([`server/routes/sitemap.xml.ts`](server/routes/sitemap.xml.ts)) |
+| `/rss.xml` | RSS 2.0 feed of published posts ([`server/routes/rss.xml.ts`](server/routes/rss.xml.ts)) |
+| `/robots.txt` | Crawl rules + sitemap reference |
+| `/og.png` | 1200×630 social share image |
+
+Drafts (`draft: true`) are excluded from listings, the sitemap and RSS, and are marked `noindex`.
+
+Regenerate the share image and app icons (one-off; needs an SVG rasterizer):
+
+```bash
+bun add -d @resvg/resvg-js && node scripts/generate-og.mjs && bun remove @resvg/resvg-js
+```
 
 ## Production
 

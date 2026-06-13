@@ -10,9 +10,47 @@ if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: 'Post not found' })
 }
 
-useSeoMeta({
+const { public: cfg } = useRuntimeConfig()
+const postPath = `/read/${slug}`
+const postUrl = absoluteUrl(postPath)
+const authorName = (cfg.fullName as string) || (cfg.siteName as string)
+
+const isDraft = post.value.draft === true || (post.value.meta as any)?.draft === true
+
+useSeo({
   title: post.value.title,
   description: post.value.description,
+  path: postPath,
+  type: 'article',
+  noindex: isDraft,
+  publishedTime: post.value.date,
+  tags: post.value.tags,
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.value.title,
+      description: post.value.description,
+      datePublished: post.value.date,
+      dateModified: post.value.date,
+      keywords: post.value.tags?.join(', '),
+      inLanguage: 'en',
+      author: { '@type': 'Person', name: authorName, url: cfg.siteUrl },
+      publisher: { '@type': 'Person', name: authorName, url: cfg.siteUrl },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+      url: postUrl,
+      image: absoluteUrl('/og.png'),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
+        { '@type': 'ListItem', position: 2, name: 'Articles', item: absoluteUrl('/articles') },
+        { '@type': 'ListItem', position: 3, name: post.value.title, item: postUrl },
+      ],
+    },
+  ],
 })
 </script>
 
@@ -56,6 +94,10 @@ useSeoMeta({
       <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-sans prose-headings:font-bold prose-headings:text-fg prose-p:text-fg-secondary prose-p:leading-relaxed prose-li:text-fg-secondary prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
         <ContentRenderer :value="post" />
       </div>
+
+      <!-- Share -->
+      <hr class="border-border mt-16 mb-8" />
+      <ShareButtons :path="postPath" :title="post.title" :text="post.description" />
     </div>
   </div>
 </template>
