@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 const { public: { email, linkedin, github } } = useRuntimeConfig()
 
 const sent = ref(false)
@@ -9,17 +9,28 @@ function handleEmailClick() {
   sent.value = true
   setTimeout(() => { sent.value = false }, 2200)
 }
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } }),
+    { threshold: 0.1 }
+  )
+  document.querySelectorAll('#contact .reveal').forEach(el => observer.observe(el))
+})
 </script>
 
 <template>
   <section id="contact" class="py-24 lg:py-32 px-6 lg:px-12 max-w-6xl mx-auto border-t border-border">
     <div class="max-w-xl">
-      <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Get in Touch</p>
-      <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight mb-6">Contact</h2>
-      <p class="text-base lg:text-lg text-fg-secondary leading-relaxed mb-10">
-        Open to new opportunities, collaborations, or just a conversation about something interesting. Drop me a line.
-      </p>
+      <div class="reveal">
+        <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Get in Touch</p>
+        <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight mb-6">Contact</h2>
+        <p class="text-base lg:text-lg text-fg-secondary leading-relaxed mb-10">
+          Open to new opportunities, collaborations, or just a conversation about something interesting. Drop me a line.
+        </p>
+      </div>
 
+      <div class="reveal" style="transition-delay: 80ms">
       <a
         :href="`mailto:${email}`"
         class="email-btn"
@@ -41,8 +52,9 @@ function handleEmailClick() {
         </span>
         <span class="email-btn__label">{{ sent ? 'Opening mail…' : email }}</span>
       </a>
+      </div>
 
-      <div class="flex gap-6 mt-10">
+      <div class="flex gap-6 mt-10 reveal" style="transition-delay: 160ms">
         <a
           :href="github"
           target="_blank"

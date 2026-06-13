@@ -1,22 +1,33 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+
 const { data: work } = await useAsyncData('work', () =>
   queryCollection('work').first()
 )
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } }),
+    { threshold: 0.1 }
+  )
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+})
 </script>
 
 <template>
   <div class="min-h-screen">
     <section class="py-24 lg:py-32 px-6 lg:px-12 max-w-6xl mx-auto">
-      <div class="mb-12">
+      <div class="mb-12 reveal">
         <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Experience</p>
         <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight">Experiences</h2>
       </div>
 
       <div class="space-y-16">
         <article
-          v-for="job in work?.experience"
+          v-for="(job, idx) in work?.experience"
           :key="job.company"
-          class="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-12"
+          class="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-12 reveal"
+          :style="`transition-delay: ${idx * 80}ms`"
         >
           <div class="lg:col-span-1">
             <p class="text-sm text-fg-tertiary">{{ job.period }}</p>
