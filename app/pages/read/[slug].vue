@@ -56,6 +56,7 @@ useSeo({
 
 <template>
   <div class="min-h-screen bg-surface">
+    <ReadingProgressBar />
     <div class="max-w-2xl mx-auto px-6 py-24 lg:py-32">
       <!-- Back link -->
       <NuxtLink
