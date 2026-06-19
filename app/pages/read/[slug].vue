@@ -17,6 +17,8 @@ const authorName = (cfg.fullName as string) || (cfg.siteName as string)
 
 const isDraft = post.value.draft === true || (post.value.meta as any)?.draft === true
 
+const tocLinks = computed(() => post.value?.body?.toc?.links ?? [])
+
 useSeo({
   title: post.value.title,
   description: post.value.description,
@@ -56,8 +58,10 @@ useSeo({
 
 <template>
   <div class="min-h-screen bg-surface">
+
     <ReadingProgressBar />
-    <div class="max-w-2xl mx-auto px-6 py-24 lg:py-32">
+    <div class="max-w-6xl mx-auto px-6 py-24 lg:py-32">
+
       <!-- Back link -->
       <NuxtLink
         to="/articles"
@@ -69,36 +73,47 @@ useSeo({
         Back
       </NuxtLink>
 
-      <!-- Header -->
-      <header class="mb-12">
-        <div class="flex flex-wrap gap-3 mb-4">
-          <span
-            v-for="tag in post.tags"
-            :key="tag"
-            class="text-xs font-semibold tracking-widest uppercase text-teal"
-          >
-            {{ tag }}
-          </span>
+      <!-- Two-column layout: article + TOC sidebar -->
+      <div class="lg:grid lg:grid-cols-[1fr_220px] lg:gap-16 xl:gap-24">
+        <!-- Main content -->
+        <div class="min-w-0">
+          <!-- Header -->
+          <header class="mb-12">
+            <div class="flex flex-wrap gap-3 mb-4">
+              <span
+                v-for="tag in post.tags"
+                :key="tag"
+                class="text-xs font-semibold tracking-widest uppercase text-teal"
+              >
+                {{ tag }}
+              </span>
+            </div>
+            <h1 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight leading-tight mb-4">
+              {{ post.title }}
+            </h1>
+            <p class="text-fg-secondary text-base leading-relaxed mb-6">{{ post.description }}</p>
+            <time class="text-xs font-semibold tracking-widest uppercase text-fg-tertiary">
+              {{ new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) }}
+            </time>
+          </header>
+
+          <hr class="border-border mb-12" />
+
+          <!-- Body -->
+          <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-sans prose-headings:font-bold prose-headings:text-fg prose-p:text-fg-secondary prose-p:leading-relaxed prose-li:text-fg-secondary prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+            <ContentRenderer :value="post" />
+          </div>
+
+          <!-- Share -->
+          <hr class="border-border mt-16 mb-8" />
+          <ShareButtons :path="postPath" :title="post.title" :text="post.description" />
         </div>
-        <h1 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight leading-tight mb-4">
-          {{ post.title }}
-        </h1>
-        <p class="text-fg-secondary text-base leading-relaxed mb-6">{{ post.description }}</p>
-        <time class="text-xs font-semibold tracking-widest uppercase text-fg-tertiary">
-          {{ new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) }}
-        </time>
-      </header>
 
-      <hr class="border-border mb-12" />
-
-      <!-- Body -->
-      <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-sans prose-headings:font-bold prose-headings:text-fg prose-p:text-fg-secondary prose-p:leading-relaxed prose-li:text-fg-secondary prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
-        <ContentRenderer :value="post" />
+        <!-- TOC sidebar (desktop only) -->
+        <aside class="hidden lg:block">
+          <ArticleToc :links="tocLinks" />
+        </aside>
       </div>
-
-      <!-- Share -->
-      <hr class="border-border mt-16 mb-8" />
-      <ShareButtons :path="postPath" :title="post.title" :text="post.description" />
     </div>
   </div>
 </template>
