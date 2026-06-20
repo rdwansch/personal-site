@@ -6,7 +6,7 @@ const { data: work } = await useAsyncData('work', () =>
 )
 
 useSeo({
-  title: 'Experiences',
+  title: 'Work Experience — Ridhwan R Siddiq',
   description:
     'Work history of Ridhwan R Siddiq — shipping internal tools, real-time systems and customer-facing web apps with React, Next.js, Vue, Nuxt and TypeScript.',
 })
@@ -25,7 +25,7 @@ onMounted(() => {
     <section class="py-24 lg:py-32 px-6 lg:px-12 max-w-6xl mx-auto">
       <div class="mb-12 reveal">
         <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Experience</p>
-        <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight">Experiences</h2>
+        <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight">Work Experiences</h2>
       </div>
 
       <div class="space-y-16">

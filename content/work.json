@@ -1,22 +1,22 @@
 {
   "experience": [
     {
-      "company": "Client",
+      "company": "AXXO",
       "location": "Remote Canada",
-      "role": "Frontend Developer - Freelance",
+      "role": "Frontend Developer (Independent Contractor)",
       "period": "March 2026 – May 2026",
       "highlights": [
         {
-          "text": "Built and optimized high-performance, responsive web interfaces based on tailored design specifications, ensuring seamless cross-browser compatibility and a pixel-perfect user experience.",
+          "text": "Engaged directly by a remote client to build out the frontend for a multi-tenant salon booking platform with three user roles: Super Admin, Salon Admin (B2B), and Customer.",
           "stack": "Next JS, TypeScript, Tailwind CSS"
         },
         {
-          "text": "Integrated third-party RESTful APIs and handled complex client-side state management to streamline data fetching and dynamic content rendering.",
-          "stack": "-"
+          "text": "Sliced UI across 60–80 pages spanning all three roles Salon Admin configuration (hair preferences, working hours, location, descriptions), Customer booking flow (search, selection, booking), and Super Admin platform management.",
+          "stack": "Next JS, TypeScript, Tailwind CSS"
         },
         {
-          "text": "Collaborated effectively in a fully remote environment using asynchronous communication and version control workflows to deliver project milestones on schedule.",
-          "stack": "-"
+          "text": "Improved usability and user experience across implemented pages.",
+          "stack": "Next JS, TypeScript, Tailwind CSS"
         }
       ]
     },
