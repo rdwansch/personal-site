@@ -1,6 +1,18 @@
 {
   "experience": [
     {
+      "company": "Sinar Sakti Internasional",
+      "location": "Jakarta Timur",
+      "role": "Frontend Developer",
+      "period": "Jul 2026 - Present",
+      "highlights": [
+        {
+          "text": "Sliced UI components from Figma and integrated REST APIs using OpenAPI-generated TanStack Query hooks within a role-based access system.",
+          "stack": "React 19, TanStack Start, TanStack Query, Tailwind CSS v4, TypeScript"
+        }
+      ]
+    },
+    {
       "company": "AXXO",
       "location": "Remote Canada",
       "role": "Frontend Developer (Independent Contractor)",
@@ -42,5 +54,3 @@
     }
   ]
 }
-
-
