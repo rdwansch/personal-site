@@ -28,13 +28,16 @@ onMounted(() => {
         <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight">Work Experiences</h2>
       </div>
 
-      <div class="space-y-16">
+      <div class="relative border-l border-border ml-2 space-y-16">
         <article
           v-for="(job, idx) in work?.experience"
           :key="job.company"
-          class="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-12 reveal"
+          class="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-12 pl-8 relative reveal"
           :style="`transition-delay: ${idx * 80}ms`"
         >
+          <span
+            class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-accent to-teal ring-4 ring-surface"
+          />
           <div class="lg:col-span-1">
             <p class="text-sm text-fg-tertiary">{{ job.period }}</p>
           </div>
