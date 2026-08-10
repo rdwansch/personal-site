@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import BlogSection from '~/components/articles/BlogSection.vue';
+
 const { public: cfg } = useRuntimeConfig()
 
 const { data: posts } = await useAsyncData('articles-seo', () =>

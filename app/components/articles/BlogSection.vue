@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 
 const { data: posts } = await useAsyncData('blog-posts', () =>
   queryCollection('blog').order('date', 'DESC').all()
 )
 
 const query = ref('')
+let observer: IntersectionObserver | null = null
 
 const published = computed(() =>
-  (posts.value ?? []).filter(p => p.meta?.draft !== true)
+  (posts.value ?? []).filter(p => p.draft !== true && p.meta?.draft !== true)
 )
 
 const filtered = computed(() => {
@@ -22,11 +23,34 @@ const filtered = computed(() => {
 })
 
 const observeReveal = () => {
-  const observer = new IntersectionObserver(
-    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } }),
+  if (typeof IntersectionObserver === 'undefined') {
+    document.querySelectorAll('#blog .reveal').forEach(el => el.classList.add('visible'))
+    return
+  }
+
+  observer?.disconnect()
+  const currentObserver = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible')
+        currentObserver.unobserve(e.target)
+      }
+    }),
     { threshold: 0.1 }
   )
-  document.querySelectorAll('#blog .reveal:not(.visible)').forEach(el => observer.observe(el))
+  observer = currentObserver
+  document.querySelectorAll('#blog .reveal:not(.visible)').forEach(el => currentObserver.observe(el))
+
+  // Keep the list visible if an observer callback is delayed during hydration.
+  requestAnimationFrame(() => {
+    document.querySelectorAll('#blog .reveal:not(.visible)').forEach(el => {
+      const rect = el.getBoundingClientRect()
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('visible')
+        currentObserver.unobserve(el)
+      }
+    })
+  })
 }
 
 onMounted(observeReveal)
@@ -35,6 +59,8 @@ watch(filtered, async () => {
   await nextTick()
   observeReveal()
 })
+
+onUnmounted(() => observer?.disconnect())
 </script>
 
 <template>

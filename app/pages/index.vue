@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const { public: cfg } = useRuntimeConfig()
 
 useSeo({
@@ -19,6 +20,11 @@ useSeo({
 <template>
   <div>
     <HeroSection />
+    <!-- <HomeStats /> -->
     <AboutSection />
+    <ExperiencePreview />
+    <!-- <ProjectsSection /> -->
+    <ArticlesPreview />
+    <ContactBanner />
   </div>
 </template>
