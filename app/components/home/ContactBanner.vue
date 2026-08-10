@@ -15,7 +15,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="root" class="py-24 lg:py-32 px-6 lg:px-12 max-w-6xl mx-auto">
+  <section id="contact" ref="root" class="scroll-mt-20 py-24 lg:py-32 px-6 lg:px-12 max-w-6xl mx-auto">
     <div
       class="relative overflow-hidden rounded-3xl border border-border bg-raised px-8 py-16 lg:px-16 lg:py-24 text-center reveal"
     >
