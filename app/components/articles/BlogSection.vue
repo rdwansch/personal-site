@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import HighlightText from './HighlightText.vue'
 
 const { data: posts } = await useAsyncData('blog-posts', () =>
   queryCollection('blog').order('date', 'DESC').all()
@@ -9,8 +10,10 @@ const query = ref('')
 let observer: IntersectionObserver | null = null
 
 const published = computed(() =>
-  (posts.value ?? []).filter(p => p.draft !== true && p.meta?.draft !== true)
+  (posts.value ?? []).filter((p:any) => p?.draft !== true && p.meta?.draft !== true)
 )
+
+
 
 const filtered = computed(() => {
   const q = query.value.trim().toLowerCase()
