@@ -1,4 +1,36 @@
 {
+  "featured": [
+    {
+      "id": "erp",
+      "selector": "Sales ERP",
+      "title": "An ERP dashboard for daily sales work",
+      "metric": "15–20",
+      "metricLabel": "sales reps use it daily",
+      "summary": "I built the frontend for sales workflows from lead tracking through order management, backed by multiple REST API integrations.",
+      "details": ["Lead tracking", "Sales workflows", "Order management"],
+      "stack": ["React", "Next.js", "TypeScript", "Chakra UI"]
+    },
+    {
+      "id": "global",
+      "selector": "Global landing",
+      "title": "A bilingual landing page reaching 90+ countries",
+      "metric": "90+",
+      "metricLabel": "countries reached",
+      "summary": "I maintained bilingual localization, scroll-based animations, and Google Analytics integration.",
+      "details": ["English and Indonesian", "Customer-facing", "Measured with analytics"],
+      "stack": ["Vue", "Nuxt.js", "TypeScript", "Tailwind CSS"]
+    },
+    {
+      "id": "booking",
+      "selector": "Booking platform",
+      "title": "A multi-tenant booking product across three roles",
+      "metric": "60–80",
+      "metricLabel": "interface pages delivered",
+      "summary": "I delivered booking, configuration, and platform-management interfaces for customers, salon admins, and super admins.",
+      "details": ["Super Admin", "Salon Admin", "Customer"],
+      "stack": ["Next.js", "TypeScript", "Tailwind CSS"]
+    }
+  ],
   "experience": [
     {
       "company": "Sinar Sakti Internasional",
@@ -7,23 +39,23 @@
       "period": "Jul 2026 - Present",
       "highlights": [
         {
-          "text": "Sliced UI components from Figma and integrated REST APIs using OpenAPI-generated TanStack Query hooks within a role-based access system.",
+          "text": "Built role-based UI from Figma and integrated REST APIs through OpenAPI-generated TanStack Query hooks.",
           "stack": "React 19, TanStack Start, TanStack Query, Tailwind CSS v4, TypeScript"
         }
       ]
     },
     {
-      "company": "AXXO",
+      "company": "",
       "location": "Remote Canada",
       "role": "Frontend Developer (Independent Contractor)",
       "period": "March 2026 – May 2026",
       "highlights": [
         {
-          "text": "Engaged directly by a remote client to build out the frontend for a multi-tenant salon booking platform with three user roles: Super Admin, Salon Admin (B2B), and Customer.",
+          "text": "Built the frontend for a multi-tenant salon booking platform serving Super Admin, Salon Admin, and Customer roles.",
           "stack": "Next JS, TypeScript, Tailwind CSS"
         },
         {
-          "text": "Sliced UI across 60–80 pages spanning all three roles Salon Admin configuration (hair preferences, working hours, location, descriptions), Customer booking flow (search, selection, booking), and Super Admin platform management.",
+          "text": "Delivered 60–80 pages across Salon Admin configuration, Customer booking, and Super Admin platform management.",
           "stack": "Next JS, TypeScript, Tailwind CSS"
         },
         {

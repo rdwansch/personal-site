@@ -1,57 +1,135 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
 const { data: work } = await useAsyncData('home-experience', () =>
   queryCollection('work').first()
 )
-
-const root = ref<HTMLElement | null>(null)
-
-onMounted(() => {
-  const observer = new IntersectionObserver(
-    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } }),
-    { threshold: 0.1 }
-  )
-  if (root.value) root.value.querySelectorAll('.reveal').forEach(el => observer.observe(el))
-})
 </script>
 
 <template>
-  <section ref="root" class="py-24 lg:py-32 px-6 lg:px-12 max-w-6xl mx-auto border-t border-border">
-    <div class="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 reveal">
-      <div>
-        <p class="text-xs font-semibold tracking-widest uppercase text-teal mb-3">Career</p>
-        <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight">Experience</h2>
-      </div>
-      <NuxtLink
-        to="/experiences"
-        class="self-start sm:self-auto text-xs font-semibold tracking-widest uppercase text-fg-secondary hover:text-accent transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full relative"
-      >
-        Full history →
-      </NuxtLink>
-    </div>
+  <section class="experience-section" aria-labelledby="experience-title">
+    <div class="section-shell">
+      <header class="experience-heading">
+        <h2 id="experience-title">Experience</h2>
+        <NuxtLink to="/experiences">View full history</NuxtLink>
+      </header>
 
-    <ol class="relative border-l border-border ml-2 space-y-10">
-      <li
-        v-for="(job, idx) in work?.experience"
-        :key="job.company"
-        class="pl-8 relative reveal"
-        :style="{ transitionDelay: `${idx * 90}ms` }"
-      >
-        <span
-          class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-accent to-teal ring-4 ring-surface"
-        />
-        <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-1">
-          <h3 class="text-lg lg:text-xl font-sans font-bold text-fg">{{ job.role }}</h3>
-          <time class="text-xs font-semibold tracking-widest uppercase text-fg-tertiary shrink-0">
-            {{ job.period }}
-          </time>
-        </div>
-        <p class="text-sm font-semibold text-accent mb-3">{{ job.company }} — {{ job.location }}</p>
-        <p v-if="job.highlights?.length" class="text-sm text-fg-secondary leading-relaxed max-w-2xl">
-          {{ job.highlights[0].text }}
-        </p>
-      </li>
-    </ol>
+      <ol class="experience-list">
+        <li v-for="job in work?.experience" :key="`${job.company}-${job.period}`">
+          <time>{{ job.period }}</time>
+          <div class="job-title">
+            <h3>{{ job.role }}</h3>
+            <p>{{ job.company }}, {{ job.location }}</p>
+          </div>
+          <div class="job-detail">
+            <p>{{ job.highlights[0]?.text }}</p>
+            <p class="job-stack">{{ job.highlights[0]?.stack }}</p>
+          </div>
+        </li>
+      </ol>
+    </div>
   </section>
 </template>
+
+<style scoped>
+.experience-section {
+  background: var(--color-surface-raised);
+}
+
+.section-shell {
+  padding-block: clamp(5rem, 10vw, 9rem);
+}
+
+.experience-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.experience-heading h2 {
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-variation-settings: "wdth" 112, "wght" 720;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+
+.experience-heading a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35rem;
+}
+
+.experience-list {
+  border-top: 1px solid var(--color-fg);
+}
+
+.experience-list li {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.4fr) minmax(13rem, 0.7fr) 1.3fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.experience-list time,
+.job-stack {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.job-title h3 {
+  font-size: 1.15rem;
+  font-weight: 720;
+}
+
+.job-title p,
+.job-detail,
+.experience-list time {
+  color: var(--color-fg-secondary);
+}
+
+.job-title p {
+  margin-top: 0.35rem;
+  font-size: 0.88rem;
+}
+
+.job-detail > p:first-child {
+  line-height: 1.6;
+}
+
+.job-stack {
+  margin-top: 1rem;
+  color: var(--color-fg);
+}
+
+@media (max-width: 800px) {
+  .experience-list li {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .job-detail {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 540px) {
+  .experience-heading {
+    display: block;
+  }
+
+  .experience-heading a {
+    display: inline-block;
+    margin-top: 1.5rem;
+  }
+
+  .experience-list li {
+    grid-template-columns: 1fr;
+  }
+
+  .job-detail {
+    grid-column: auto;
+  }
+}
+</style>

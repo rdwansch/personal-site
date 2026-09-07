@@ -17,7 +17,7 @@ useSeo({
   <div class="min-h-screen bg-surface">
     <div class="max-w-2xl mx-auto px-6 py-24 lg:py-32">
       <header class="mb-16">
-        <h1 class="text-4xl lg:text-5xl font-bold text-fg tracking-tight font-preahvihear">
+        <h1 class="text-4xl lg:text-5xl font-bold text-fg tracking-tight font-sans">
           Read my posts
         </h1>
       </header>

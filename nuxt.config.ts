@@ -11,7 +11,8 @@ export default defineNuxtConfig({
   ],
   fonts: {
     families: [
-      { name: 'Preahvihear', provider: 'google' },
+      { name: 'Archivo', provider: 'google' },
+      { name: 'Fragment Mono', provider: 'google' },
     ],
   },
   css: ['~/assets/css/main.css'],
@@ -48,7 +49,7 @@ export default defineNuxtConfig({
       siteName: process.env.NUXT_PUBLIC_SITE_NAME || 'Ridhwan R Siddiq',
       siteDescription:
         process.env.NUXT_PUBLIC_SITE_DESCRIPTION ||
-        'Ridhwan R Siddiq is a software developer specializing in React, Next.js, Vue and Nuxt — building fast, accessible, production-grade web interfaces.',
+        'Ridhwan R Siddiq is a frontend developer building production interfaces with React, Next.js, Vue, Nuxt.js, and TypeScript.',
     },
   },
 })

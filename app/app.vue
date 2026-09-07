@@ -6,12 +6,11 @@ const siteUrl = (cfg.siteUrl as string).replace(/\/$/, '')
 // Site-wide head defaults. Per-page tags (title, description, canonical, OG)
 // are layered on top via the useSeo() composable.
 useHead({
-  titleTemplate: (title) => (title ? `${title} — ${siteName}` : `${siteName} — Software Developer`),
+  titleTemplate: (title) => (title ? `${title} — ${siteName}` : `${siteName} — Frontend Developer`),
   meta: [
     { name: 'author', content: siteName },
     { name: 'robots', content: 'index, follow, max-image-preview:large' },
-    { name: 'theme-color', content: '#F7F8FB', media: '(prefers-color-scheme: light)' },
-    { name: 'theme-color', content: '#0F1117', media: '(prefers-color-scheme: dark)' },
+    { name: 'theme-color', content: '#D8E6E9' },
   ],
 })
 
@@ -33,7 +32,7 @@ useHead({
         alternateName: siteName,
         url: siteUrl,
         image: `${siteUrl}/og.png`,
-        jobTitle: 'Software Developer',
+        jobTitle: 'Frontend Developer',
         email: cfg.email ? `mailto:${cfg.email}` : undefined,
         sameAs: [cfg.github, cfg.linkedin].filter(Boolean),
         knowsAbout: ['React', 'Next.js', 'Vue', 'Nuxt.js', 'TypeScript', 'Web Development'],
@@ -55,7 +54,6 @@ useHead({
 
 <template>
   <div>
-    <CursorEffect />
     <NuxtRouteAnnouncer />
     <NuxtLayout>
       <NuxtPage />

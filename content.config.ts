@@ -27,6 +27,16 @@ export default defineContentConfig({
       type: 'data',
       source: 'work.json',
       schema: z.object({
+        featured: z.array(z.object({
+          id: z.enum(['erp', 'global', 'booking']),
+          selector: z.string(),
+          title: z.string(),
+          metric: z.string(),
+          metricLabel: z.string(),
+          summary: z.string(),
+          details: z.array(z.string()),
+          stack: z.array(z.string()),
+        })),
         experience: z.array(z.object({
           company: z.string(),
           location: z.string(),

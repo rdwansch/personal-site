@@ -1,69 +1,129 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
 const { data: posts } = await useAsyncData('home-articles', () =>
   queryCollection('blog').order('date', 'DESC').limit(3).all()
 )
 
 const published = computed(() =>
-  (posts.value ?? []).filter((p: any) => p.draft !== true && p.meta?.draft !== true)
+  (posts.value ?? []).filter((post: any) => post.draft !== true && post.meta?.draft !== true)
 )
-
-const root = ref<HTMLElement | null>(null)
-
-onMounted(() => {
-  const observer = new IntersectionObserver(
-    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } }),
-    { threshold: 0.1 }
-  )
-  if (root.value) root.value.querySelectorAll('.reveal').forEach(el => observer.observe(el))
-})
 </script>
 
 <template>
-  <section ref="root" class="py-24 lg:py-32 px-6 lg:px-12 max-w-6xl mx-auto border-t border-border">
-    <div class="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 reveal">
+  <section class="section-shell articles-section" aria-labelledby="articles-title">
+    <header class="articles-heading">
       <div>
-        <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Writing</p>
-        <h2 class="text-3xl lg:text-4xl font-sans font-bold text-fg tracking-tight">Latest Articles</h2>
+        <p>Engineering notes</p>
+        <h2 id="articles-title">Writing</h2>
       </div>
-      <NuxtLink
-        to="/articles"
-        class="self-start sm:self-auto text-xs font-semibold tracking-widest uppercase text-fg-secondary hover:text-accent transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full relative"
-      >
-        All articles →
-      </NuxtLink>
-    </div>
+      <NuxtLink to="/articles">Read all articles</NuxtLink>
+    </header>
 
-    <div class="divide-y divide-border">
-      <article
-        v-for="(post, idx) in published"
-        :key="post.path"
-        class="group py-8 transition-colors duration-300 reveal"
-        :style="{ transitionDelay: `${idx * 80}ms` }"
-      >
-        <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-3">
-          <h3 class="text-lg lg:text-xl font-sans font-bold text-fg group-hover:text-accent transition-colors duration-300 leading-snug">
+    <div class="article-list">
+      <article v-for="post in published" :key="post.path">
+        <time v-if="post.date">
+          {{ new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }}
+        </time>
+        <div>
+          <h3>
             <NuxtLink :to="`/read/${post.path.split('/').pop()}`">{{ post.title }}</NuxtLink>
           </h3>
-          <time
-            v-if="post.date"
-            class="text-xs font-semibold tracking-widest uppercase text-fg-tertiary shrink-0"
-          >
-            {{ new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }}
-          </time>
+          <p>{{ post.description }}</p>
         </div>
-        <p class="text-sm text-fg-secondary leading-relaxed max-w-2xl">{{ post.description }}</p>
-        <div v-if="post.tags?.length" class="flex flex-wrap gap-3 mt-3">
-          <span
-            v-for="tag in post.tags"
-            :key="tag"
-            class="text-xs font-semibold tracking-widest uppercase text-teal"
-          >
-            {{ tag }}
-          </span>
-        </div>
+        <p class="article-tags">{{ post.tags?.join(' / ') }}</p>
       </article>
     </div>
   </section>
 </template>
+
+<style scoped>
+.articles-section {
+  padding-block: clamp(5rem, 10vw, 9rem);
+}
+
+.articles-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.articles-heading p {
+  margin-bottom: 0.75rem;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+}
+
+.articles-heading h2 {
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-variation-settings: "wdth" 112, "wght" 720;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+
+.articles-heading > a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35rem;
+}
+
+.article-list {
+  border-top: 1px solid var(--color-fg);
+}
+
+.article-list article {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.3fr) 1fr minmax(8rem, 0.35fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.article-list time,
+.article-tags {
+  color: var(--color-fg-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.article-list h3 {
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  font-weight: 680;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.article-list h3 a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+.article-list div > p {
+  max-width: 43rem;
+  margin-top: 0.7rem;
+  color: var(--color-fg-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+  .article-list article {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .articles-heading {
+    display: block;
+  }
+
+  .articles-heading > a {
+    display: inline-block;
+    margin-top: 1.5rem;
+  }
+}
+</style>

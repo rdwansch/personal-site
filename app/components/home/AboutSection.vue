@@ -1,78 +1,25 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
-
 const { data: about } = await useAsyncData('about', () =>
   queryCollection('about').first()
 )
-
-const els = ref<Element[]>([])
-let observer: IntersectionObserver | null = null
-
-onMounted(() => {
-  observer = new IntersectionObserver(
-    (entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),
-    { threshold: 0.12 }
-  )
-  document.querySelectorAll('.reveal').forEach(el => {
-    observer?.observe(el)
-    els.value.push(el)
-  })
-})
-
-onUnmounted(() => observer?.disconnect())
 </script>
 
 <template>
-  <section id="about" class="mx-auto max-w-6xl px-6 py-24 lg:px-12 lg:py-32">
-    <div class="reveal  py-6 lg:flex lg:items-end lg:justify-between lg:gap-12">
-      <div>
-        <!-- <p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-accent">01 / Profile</p> -->
-        <h2 class="max-w-2xl text-4xl font-sans font-bold leading-[0.98] tracking-tight text-fg sm:text-5xl lg:text-6xl">
-          Building the useful<br class="hidden sm:block" /> parts of the web.
-        </h2>
-      </div>
-      <p class="mt-6 max-w-xs text-sm leading-relaxed text-fg-secondary lg:mb-1 lg:mt-0">
-        <!-- A frontend-focused developer who turns complex workflows into clear, dependable products. -->
-      </p>
-    </div>
+  <section id="about" class="section-shell about-section" aria-labelledby="about-title">
+    <header class="section-heading">
+      <p>Working range</p>
+      <h2 id="about-title">Frontend delivery across product surfaces.</h2>
+    </header>
 
-    <div class="grid grid-cols-1 gap-14 pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-24 lg:pt-20">
-      <div>
-        <p
-          v-for="(paragraph, i) in about?.bio"
-          :key="i"
-          class="reveal border-l-2 border-teal pl-5 text-base leading-[1.8] sm:pl-6 lg:text-lg"
-          :class="i === 0 ? 'text-fg' : 'mt-7 text-fg-secondary'"
-          :style="{ transitionDelay: `${(i + 1) * 80}ms` }"
-        >
-          {{ paragraph }}
-        </p>
+    <div class="about-grid">
+      <div class="bio-copy">
+        <p v-for="paragraph in about?.bio" :key="paragraph">{{ paragraph }}</p>
       </div>
 
-      <div class="">
-        <div class="flex items-center justify-end border-b border-border py-4">
-          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-fg">Working toolkit</p>
-          <!-- <span class="text-xs text-fg-tertiary">{{ about?.skills?.length ?? 0 }} areas</span> -->
-        </div>
-        <div
-          v-for="(group, i) in about?.skills"
-          :key="group.category"
-          class="reveal group grid grid-cols-[7.5rem_1fr] gap-4 border-b border-border py-5 sm:grid-cols-[9rem_1fr]"
-          :style="{ transitionDelay: `${(i + 1) * 100}ms` }"
-        >
-          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-fg-tertiary transition-colors group-hover:text-accent">
-            {{ group.category }}
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span
-              v-for="skill in group.items"
-              :key="skill"
-              class="tool-badge"
-            >
-              <span class="tool-dot" aria-hidden="true" />
-              {{ skill }}
-            </span>
-          </div>
+      <div class="skill-ledger" aria-label="Technical capabilities">
+        <div v-for="group in about?.skills" :key="group.category" class="skill-row">
+          <h3>{{ group.category }}</h3>
+          <p>{{ group.items.join(' / ') }}</p>
         </div>
       </div>
     </div>
@@ -80,44 +27,82 @@ onUnmounted(() => observer?.disconnect())
 </template>
 
 <style scoped>
-.tool-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  border: 1px solid var(--color-border);
-  border-radius: 9999px;
-  padding: 0.42rem 0.7rem;
+.about-section {
+  padding-block: clamp(5rem, 10vw, 9rem);
+}
+
+.section-heading {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.35fr) 1fr;
+  gap: 3rem;
+  align-items: start;
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.section-heading > p {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.section-heading h2 {
+  max-width: 17ch;
+  font-size: clamp(2.5rem, 5.5vw, 5.75rem);
+  font-variation-settings: "wdth" 112, "wght" 700;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(3rem, 8vw, 8rem);
+}
+
+.bio-copy {
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.65;
+}
+
+.bio-copy p + p {
+  margin-top: 1.5rem;
   color: var(--color-fg-secondary);
-  background-color: var(--color-surface-raised);
-  font-size: 0.75rem;
-  line-height: 1;
-  transition:
-    color 0.25s ease,
-    border-color 0.25s ease,
-    background-color 0.25s ease,
-    transform 0.25s var(--ease-out-back);
 }
 
-.tool-dot {
-  width: 0.35rem;
-  height: 0.35rem;
-  flex: 0 0 auto;
-  border-radius: 9999px;
-  background: var(--color-accent-teal);
-  opacity: 0.75;
-  transition: transform 0.25s var(--ease-out-back), background-color 0.25s ease;
+.skill-ledger {
+  border-top: 1px solid var(--color-fg);
 }
 
-.tool-badge:hover {
-  color: var(--color-fg);
-  border-color: var(--color-accent);
-  background: var(--overlay-accent);
-  transform: translateY(-2px);
+.skill-row {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.35fr) 1fr;
+  gap: 2rem;
+  padding-block: 1.3rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.tool-badge:hover .tool-dot {
-  background: var(--color-accent);
-  opacity: 1;
-  transform: scale(1.5);
+.skill-row h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.skill-row p {
+  color: var(--color-fg-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+  .section-heading,
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .skill-row {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
 }
 </style>

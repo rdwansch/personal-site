@@ -1,94 +1,66 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Preahvihear&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Light theme (default) ─────────────────────────────── */
 :root {
-  --color-surface:        #F7F8FB;
-  --color-surface-raised: #FFFFFF;
-  --color-fg:             #1E2229;
-  --color-fg-secondary:   #64748B;
-  --color-fg-tertiary:    #94A3B8;
-  --color-accent:         #6B5CA5;
-  --color-accent-teal:    #4DA8A0;
-  --color-border:         #E2E8F0;
-  --overlay-accent:       rgba(124, 111, 175, 0.12);
-
-  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
-
-  --duration-fast:   0.3s;
-  --duration-normal: 0.6s;
-  --duration-slow:   0.8s;
-  --ease-out-back:  cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-out-quart: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --color-surface: #D8E6E9;
+  --color-surface-raised: #F8FBFA;
+  --color-fg: #132A2F;
+  --color-fg-secondary: #50676B;
+  --color-fg-tertiary: #50676B;
+  --color-accent: #493C9F;
+  --color-accent-teal: #493C9F;
+  --color-highlight: #F2C14E;
+  --color-border: rgba(19, 42, 47, 0.24);
+  --overlay-accent: rgba(73, 60, 159, 0.1);
+  --font-sans: 'Archivo', 'Arial Narrow', sans-serif;
+  --font-mono: 'Fragment Mono', 'Courier New', monospace;
 }
 
-/* ─── Dark theme ─────────────────────────────────────────── */
-.dark {
-  --color-surface:        #0F1117;
-  --color-surface-raised: #1A1D27;
-  --color-fg:             #E8EAF0;
-  --color-fg-secondary:   #94A3B8;
-  --color-fg-tertiary:    #64748B;
-  --color-accent:         #7C6FC2;
-  --color-accent-teal:    #3D9E97;
-  --color-border:         #2A2D3A;
-  --overlay-accent:       rgba(124, 111, 194, 0.14);
-}
-
-/* ─── Base ───────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
-  background-color: var(--color-surface);
+  background: var(--color-surface);
   color: var(--color-fg);
   font-family: var(--font-sans);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
-  background-color: var(--color-surface);
+  min-width: 320px;
+  background: var(--color-surface);
 }
 
-/* ─── Custom cursor ──────────────────────────────────────── */
-/* Only hide the native cursor when the custom cursor is active (non-touch). */
-.custom-cursor, .custom-cursor *, .custom-cursor *::before, .custom-cursor *::after {
-  cursor: none !important;
-}
-
-/* ─── Selection color ────────────────────────────────────── */
 ::selection {
-  background-color: var(--color-accent);
-  color: #ffffff;
+  background: var(--color-accent);
+  color: var(--color-surface-raised);
 }
 
-.dark ::selection {
-  background-color: var(--color-accent);
-  color: #0F1117;
+:where(a, button):focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
-/* ─── Parallax layer ─────────────────────────────────────── */
-[data-parallax] {
-  will-change: transform;
+.section-shell {
+  width: min(100%, 90rem);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 4rem);
 }
 
-/* ─── Animated elements ──────────────────────────────────── */
-[data-stagger],
-.animate-fade-up,
-.animate-fade-in {
-  will-change: opacity, transform;
+@media (max-width: 640px) {
+  .section-shell {
+    padding-inline: 1rem;
+  }
 }
 
-/* ─── Reveal on scroll ───────────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

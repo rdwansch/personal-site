@@ -3,14 +3,13 @@
 const { public: cfg } = useRuntimeConfig()
 
 useSeo({
-  // No title → falls back to the default "<name> — Software Developer" template.
   description:
-    'Ridhwan R Siddiq — software developer with 2 years building production React, Next.js, Vue and Nuxt apps. Clean interfaces, real-time systems, and code that lasts.',
+    'Ridhwan R Siddiq builds production interfaces used by sales teams, customers across 90+ countries, and multi-role booking products.',
   type: 'profile',
   jsonLd: {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
-    name: `${cfg.siteName} — Software Developer`,
+    name: `${cfg.siteName} — Frontend Developer`,
     url: absoluteUrl('/'),
     about: { '@type': 'Person', name: cfg.fullName || cfg.siteName },
   },
@@ -20,10 +19,9 @@ useSeo({
 <template>
   <div>
     <HeroSection />
-    <!-- <HomeStats /> -->
+    <WorkEvidence />
     <AboutSection />
     <ExperiencePreview />
-    <!-- <ProjectsSection /> -->
     <ArticlesPreview />
     <ContactBanner />
   </div>

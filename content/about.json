@@ -1,8 +1,8 @@
 {
   "bio": [
-    "Software developer with 2 years of production experience building internal tools, real-time systems, and customer-facing web applications. Core stack: React/Next.js, Vue/Nuxt.js, TypeScript.",
-    "I've shipped features used daily by real users across sales, operations, and customer communication workflows — from ERP dashboards to bilingual landing pages reaching 90+ countries.",
-    "I care about the details — smooth interactions, readable code, and interfaces that just work. I'm comfortable owning a feature from concept to deployment."
+    "I work across React/Next.js and Vue/Nuxt.js, owning frontend delivery from API integration through responsive UI.",
+    "My production work covers internal sales operations, multilingual public pages, and role-based booking workflows.",
+    "I use TypeScript, REST APIs, component systems, and product context to keep large interfaces understandable."
   ],
   "skills": [
     {

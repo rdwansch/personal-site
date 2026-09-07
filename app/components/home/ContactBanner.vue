@@ -1,64 +1,89 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
 const { public: { email, github, linkedin } } = useRuntimeConfig()
-
-const root = ref<HTMLElement | null>(null)
-
-onMounted(() => {
-  const observer = new IntersectionObserver(
-    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } }),
-    { threshold: 0.2 }
-  )
-  if (root.value) root.value.querySelectorAll('.reveal').forEach(el => observer.observe(el))
-})
 </script>
 
 <template>
-  <section id="contact" ref="root" class="scroll-mt-20 py-24 lg:py-32 px-6 lg:px-12 max-w-6xl mx-auto">
-    <div
-      class="relative overflow-hidden rounded-3xl border border-border bg-raised px-8 py-16 lg:px-16 lg:py-24 text-center reveal"
-    >
-      <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent to-teal" />
-      <div class="absolute top-0 left-0 w-64 h-64 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
-      <div class="absolute bottom-0 right-0 w-72 h-72 rounded-full bg-teal/10 blur-3xl pointer-events-none" />
-
-      <p class="relative text-xs font-semibold tracking-widest uppercase text-teal mb-4">Let's talk</p>
-      <h2 class="relative text-3xl lg:text-5xl font-sans font-bold text-fg tracking-tight mb-6">
-        Have a project in mind?
-      </h2>
-      <p class="relative text-fg-secondary text-base lg:text-lg max-w-xl mx-auto leading-relaxed mb-10">
-        I'm open to new opportunities, collaborations, or just a conversation about something interesting. Drop me a line.
-      </p>
-
-      <div class="relative flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a
-          :href="`mailto:${email}`"
-          class="bg-gradient-to-r from-accent to-teal text-white px-8 py-3.5 font-semibold tracking-widest uppercase text-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/25 active:translate-y-0"
-        >
-          Email Me
-        </a>
-        <div class="flex gap-6">
-          <a
-            v-if="github"
-            :href="github"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="relative text-xs font-semibold tracking-widest uppercase text-fg-secondary hover:text-accent transition-colors duration-300"
-          >
-            GitHub
-          </a>
-          <a
-            v-if="linkedin"
-            :href="linkedin"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="relative text-xs font-semibold tracking-widest uppercase text-fg-secondary hover:text-accent transition-colors duration-300"
-          >
-            LinkedIn
-          </a>
-        </div>
-      </div>
+  <section id="contact" class="contact-section" aria-labelledby="contact-title">
+    <div class="contact-index">Contact</div>
+    <div class="contact-copy">
+      <h2 id="contact-title">Building a product with real users and complex workflows?</h2>
+      <p>Bring the product context. I will bring frontend execution across React, Vue, and TypeScript.</p>
+    </div>
+    <div class="contact-actions">
+      <a v-if="email" :href="`mailto:${email}`" class="email-link">Email Ridhwan</a>
+      <a v-if="github" :href="github as string" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a v-if="linkedin" :href="linkedin as string" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
   </section>
 </template>
+
+<style scoped>
+.contact-section {
+  width: min(100%, 90rem);
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.3fr) 1fr auto;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+  margin-inline: auto;
+  padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 4vw, 4rem);
+  background: var(--color-fg);
+  color: var(--color-surface-raised);
+}
+
+.contact-index {
+  align-self: start;
+  color: var(--color-highlight);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.contact-copy h2 {
+  max-width: 16ch;
+  font-size: clamp(2.5rem, 5.5vw, 5.75rem);
+  font-variation-settings: "wdth" 112, "wght" 700;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.contact-copy p {
+  max-width: 38rem;
+  margin-top: 2rem;
+  color: var(--color-surface);
+  line-height: 1.65;
+}
+
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  color: var(--color-surface-raised);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.contact-actions a {
+  text-decoration: underline;
+  text-underline-offset: 0.35rem;
+}
+
+.email-link {
+  padding: 0.9rem 1rem;
+  background: var(--color-highlight);
+  color: var(--color-fg);
+  text-decoration: none !important;
+}
+
+@media (max-width: 820px) {
+  .contact-section {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-section {
+    padding-inline: 1rem;
+  }
+}
+</style>
