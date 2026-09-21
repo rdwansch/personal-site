@@ -13,6 +13,12 @@ export default {
   theme: {
     extend: {
       colors: {
+        ink:      'var(--color-ink)',
+        cobalt:   'var(--color-cobalt)',
+        heat:     'var(--color-heat)',
+        pink:     'var(--color-pink)',
+        lime:     'var(--color-lime)',
+        paper:    'var(--color-paper)',
         surface:  'var(--color-surface)',
         raised:   'var(--color-surface-raised)',
         fg:       'var(--color-fg)',
@@ -34,10 +40,9 @@ export default {
         },
       },
       fontFamily: {
-        sans:    ['Archivo', 'Arial Narrow', 'sans-serif'],
-        display: ['Archivo', 'Arial Narrow', 'sans-serif'],
-        body:    ['Archivo', 'Arial Narrow', 'sans-serif'],
-        mono:    ['Fragment Mono', 'Courier New', 'monospace'],
+        sans:    ['Atkinson Hyperlegible Next', 'Arial', 'sans-serif'],
+        display: ['Anybody', 'Arial Black', 'sans-serif'],
+        body:    ['Atkinson Hyperlegible Next', 'Arial', 'sans-serif'],
       },
       spacing: {
         '18': '4.5rem',

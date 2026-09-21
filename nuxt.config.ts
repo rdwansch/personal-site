@@ -10,9 +10,10 @@ export default defineNuxtConfig({
     '~/components',
   ],
   fonts: {
+    google: { experimental: { variableAxis: { Anybody: { wdth: [['50', '150']] } } } },
     families: [
-      { name: 'Archivo', provider: 'google' },
-      { name: 'Fragment Mono', provider: 'google' },
+      { name: 'Anybody', provider: 'google', weights: ['100 900'], styles: ['normal'] },
+      { name: 'Atkinson Hyperlegible Next', provider: 'google', weights: ['400 700'], styles: ['normal'] },
     ],
   },
   css: ['~/assets/css/main.css'],

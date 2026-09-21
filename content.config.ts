@@ -2,6 +2,40 @@ import { defineContentConfig, defineCollection, z } from '@nuxt/content'
 
 export default defineContentConfig({
   collections: {
+    home: defineCollection({
+      type: 'data',
+      source: 'home.json',
+      schema: z.object({
+        hero: z.object({
+          greeting: z.string(),
+          headline: z.tuple([z.string(), z.string()]),
+          tabs: z.tuple([z.string(), z.string()]),
+          tools: z.tuple([z.string(), z.string()]),
+          approach: z.tuple([z.string(), z.string()]),
+          tabLabels: z.tuple([z.string(), z.string(), z.string()]),
+        }).strict(),
+        ai: z.object({
+          intro: z.tuple([z.string(), z.string()]),
+          speed: z.tuple([z.string(), z.string()]),
+          review: z.tuple([z.string(), z.string()]),
+          principle: z.tuple([z.string(), z.string()]),
+          suggestions: z.tuple([z.string(), z.string(), z.string()]),
+        }).strict(),
+        work: z.object({
+          intro: z.tuple([z.string(), z.string(), z.string()]),
+          chapters: z.array(z.object({
+            id: z.enum(['erp', 'global', 'booking']),
+            title: z.string(),
+            description: z.string(),
+            metricBefore: z.string(),
+            metricAfter: z.string(),
+          }).strict()).length(3),
+        }).strict(),
+        experience: z.object({ title: z.string(), link: z.string() }).strict(),
+        writing: z.object({ title: z.string(), link: z.string() }).strict(),
+        contact: z.object({ title: z.tuple([z.string(), z.string()]) }).strict(),
+      }).strict(),
+    }),
     blog: defineCollection({
       type: 'page',
       source: 'blog/*.md',

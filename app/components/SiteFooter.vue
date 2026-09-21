@@ -5,8 +5,8 @@ const displayName = (cfg.fullName as string) || 'Ridhwan R Siddiq'
 
 <template>
   <footer>
-    <p>{{ displayName }}</p>
-    <p class="footer-meta">Frontend Developer / {{ new Date().getFullYear() }}</p>
+    <p>Made by {{ displayName }}.</p>
+    <p class="footer-meta">Still tinkering, {{ new Date().getFullYear() }}.</p>
     <div class="footer-links">
       <a v-if="cfg.github" :href="cfg.github as string" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a v-if="cfg.linkedin" :href="cfg.linkedin as string" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -23,15 +23,15 @@ footer {
   align-items: baseline;
   margin-inline: auto;
   padding: 2rem clamp(1.25rem, 4vw, 4rem);
-  border-top: 1px solid var(--color-border);
   color: var(--color-fg);
 }
+
+footer > p:first-child { font-family: var(--font-display); }
 
 .footer-meta,
 .footer-links {
   color: var(--color-fg-secondary);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.9rem;
 }
 
 .footer-links {

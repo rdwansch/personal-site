@@ -6,11 +6,12 @@ const siteUrl = (cfg.siteUrl as string).replace(/\/$/, '')
 // Site-wide head defaults. Per-page tags (title, description, canonical, OG)
 // are layered on top via the useSeo() composable.
 useHead({
+  htmlAttrs: { class: 'dark' },
   titleTemplate: (title) => (title ? `${title} — ${siteName}` : `${siteName} — Frontend Developer`),
   meta: [
     { name: 'author', content: siteName },
     { name: 'robots', content: 'index, follow, max-image-preview:large' },
-    { name: 'theme-color', content: '#D8E6E9' },
+    { name: 'theme-color', content: '#090A0F' },
   ],
 })
 

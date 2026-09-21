@@ -1,0 +1,93 @@
+{
+  "hero": {
+    "greeting": "Hey, I’m Ridhwan.",
+    "headline": [
+      "I make things",
+      "for the web."
+    ],
+    "tabs": [
+      "Usually with",
+      "too many tabs open."
+    ],
+    "tools": [
+      "React. Vue.",
+      "TypeScript."
+    ],
+    "approach": [
+      "Whatever helps",
+      "the product work."
+    ],
+    "tabLabels": [
+      "React",
+      "Vue",
+      "TypeScript"
+    ]
+  },
+  "ai": {
+    "intro": [
+      "AI is part of",
+      "my workflow."
+    ],
+    "speed": [
+      "It helps me",
+      "move faster."
+    ],
+    "review": [
+      "But I still",
+      "read the code."
+    ],
+    "principle": [
+      "No blind",
+      "vibe coding."
+    ],
+    "suggestions": [
+      "Suggestion",
+      "Keep",
+      "Rethink"
+    ]
+  },
+  "work": {
+    "intro": [
+      "Anyway,",
+      "here are a few things",
+      "I’ve worked on."
+    ],
+    "chapters": [
+      {
+        "id": "erp",
+        "title": "Sales ERP",
+        "description": "Lead tracking to order management.",
+        "metricBefore": "Used daily by",
+        "metricAfter": "sales reps."
+      },
+      {
+        "id": "global",
+        "title": "Global landing page",
+        "description": "English and Indonesian.",
+        "metricBefore": "Reached users across",
+        "metricAfter": "countries."
+      },
+      {
+        "id": "booking",
+        "title": "Booking platform",
+        "description": "Three user roles.",
+        "metricBefore": "",
+        "metricAfter": "interface pages delivered."
+      }
+    ]
+  },
+  "experience": {
+    "title": "Along the way.",
+    "link": "Full experience"
+  },
+  "writing": {
+    "title": "Things I write down.",
+    "link": "All articles"
+  },
+  "contact": {
+    "title": [
+      "Anyway,",
+      "say hi."
+    ]
+  }
+}

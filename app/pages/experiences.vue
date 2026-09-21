@@ -59,6 +59,5 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- <ProjectsSection /> -->
   </div>
 </template>

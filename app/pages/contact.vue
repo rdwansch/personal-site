@@ -80,7 +80,7 @@ useSeo({
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.55;
+  opacity: 1;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -100,13 +100,13 @@ useSeo({
 }
 
 .social-button--linkedin {
-  background-color: color-mix(in srgb, #0a66c2 14%, transparent);
-  color: #0a66c2;
+  background-color: color-mix(in srgb, var(--color-cobalt) 20%, transparent);
+  color: var(--color-paper);
 }
 
 .social-button--github {
-  background-color: color-mix(in srgb, #24292f 14%, transparent);
-  color: #24292f;
+  background-color: var(--color-surface-raised);
+  color: var(--color-paper);
 }
 
 .social-button--email {
@@ -115,6 +115,6 @@ useSeo({
 }
 
 .dark .social-button--github {
-  color: #f0f6fc;
+  color: var(--color-paper);
 }
 </style>
